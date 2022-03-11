@@ -1,0 +1,32 @@
+<% layout("layouts/boilerplate.ejs") %> 
+
+<body >
+    <main >
+        <%- include("../partials/flash.ejs") %> 
+        <h1>My Portfolio</h1>
+        <% for(let portfolio of portfolios) { %>
+            
+        <div class="text-center" style="width: 40rem; border:2px solid black; margin-bottom: 10px; background-color: white;">
+            <% if(portfolio.gallery && portfolio.gallery.length>0){ %>
+                <h2 class="card-title">Name: <%= portfolio.name %></h2>
+            <img class="card-img-top " src="<%= portfolio.gallery[0].url %>" alt="Card image cap">
+<% }else{ %>
+    <h2 class="card-title">Name: <%= portfolio.name %>
+    </h2>
+            <h1>Image Not Found!</h1>
+<% } %>
+
+            <div class="card-body pb-0">
+                <h4 class="card-subtitle">Programming Language: <%= portfolio.programmingLanguage %></h4>
+                <p class="card-text">Description: <%= portfolio.description %></p>
+                <p class="card-text"><a href="<%= portfolio.linkToGitHub %> ">Link To Repository</a></p>
+                <p class="card-text"></p>
+                <a href="/portfolios/<%= portfolio._id %>" class="btn btn-primary">Details</a>
+                <p class="mt-3 m-0 p-0">Created on: <%= portfolio.createDate.toLocaleString() %> </p>
+            </div>
+        </div>
+        <% } %>
+
+    </main>
+</body>
+</html>

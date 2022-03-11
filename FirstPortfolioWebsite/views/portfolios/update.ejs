@@ -1,0 +1,40 @@
+<% layout("layouts/boilerplate.ejs") %>
+<body>
+    <form action="/portfolios/<%= portfolio._id %>?_method=PATCH" method="post" enctype="multipart/form-data">
+        <h1>Updating Portfolio</h1>
+    <div class = "mb-3">
+        <label class="form-label" for="name">Project Name</label>
+        <input class="form-control" type="text" name="name" id="name" value="<%= portfolio.name %>">
+    </div>
+
+    <div class = "mb-3">
+        <label class="form-label" for="programmingLanguage">Main Programming Language used</label>
+        <input class="form-control" type="text" name="programmingLanguage" id="programmingLanguage" value="<%= portfolio.programmingLanguage %>">
+    </div>
+    <div class = "mb-3">
+        <label class="form-label" for="description">Project Description</label>
+        <textarea class="form-control" name="description" id="description" cols="30" rows="10"><%= portfolio.description %></textarea>
+    </div>
+    <div class = "mb-3">
+        <label class="form-label" for="linkToGitHub">Github Link to the project</label>
+        <input class="form-control" type="text" name="linkToGitHub" id="linkToGitHub" value="<%= portfolio.linkToGitHub %>">
+    </div>
+
+    
+    <div class="mb-3">
+        <label for="gallery" class="form-label">Default file input example</label>
+        <input class="form-control" name="gallery" type="file" id="gallery" multiple>
+    </div>
+
+    <% portfolio.gallery.forEach((element,index)=>{ %> 
+        <img src="<%= element.url %> " alt="Image not found">
+        <input type="checkbox" name="deletedImage" id="image<%= index %>" value="<%= element.filename %>">
+        <label for="image<%= index %>">Delete?</label>
+        <% }) %> 
+    <button  class="btn btn-primary mb-2" type="submit">Update project to portfolio</button>
+    </form>
+
+
+
+    
+</body>

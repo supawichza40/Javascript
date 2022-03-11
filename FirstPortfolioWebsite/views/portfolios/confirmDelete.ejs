@@ -1,0 +1,14 @@
+<% layout("layouts/boilerplate.ejs") %>
+<body>
+    <h1>Confirm of Deleting: <%= portfolio.name %> </h1>
+    <h2>Programming Language:<%= portfolio.programmingLanguage %> </h2>
+    <p>Description: <%= portfolio.description %> </p>
+    <p>Link to github: <%= portfolio.linkToGitHub %> </p>
+    <form action="/portfolios/<%= portfolio._id %>?_method=DELETE " method="post">
+        <label for="confirmDelete">Type "DELETE" TO CONFIRM YOUR DELETION</label>
+        <input type="text" name="confirmDelete" id="confirmDelete">
+        <a href="/portfolios"><button>Cancel</button></a>
+        <button type="submit">DELETE!</button>
+    </form>
+    
+</body>

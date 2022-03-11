@@ -1,0 +1,33 @@
+<% layout("layouts/boilerplate.ejs") %>
+
+<body>
+    <form action="/portfolios" method="post" enctype="multipart/form-data">
+        <h1>Creating new Portfolio</h1>
+    <div class="mb-3">
+        <label class="form-label" for="name">Project Name</label>
+        <input class="form-control" type="text" name="name" id="name">
+    </div>
+
+
+        <div class="mb-3">
+            <label for="gallery" class="form-label">Default file input example</label>
+            <input class="form-control" name="gallery" type="file" id="gallery" multiple>
+        </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="programmingLanguage">Main Programming Language used</label>
+        <input class="form-control" type="text" name="programmingLanguage" id="programmingLanguage">
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="description">Project Description</label>
+        <textarea class="form-control" name="description" id="description" cols="30" rows="10"></textarea>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="linkToGitHub">Github Link to the project</label>
+        <input class="form-control" type="text" name="linkToGitHub" id="linkToGitHub">
+    </div>        
+
+        <button class="btn btn-success mb-3" type="submit">Add new project to portfolio</button>
+
+    </form>
+</body>

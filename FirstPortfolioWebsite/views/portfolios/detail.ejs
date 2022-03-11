@@ -1,0 +1,49 @@
+<% layout("layouts/boilerplate.ejs") %>
+<body >
+    <main style="display: block;">
+        <%- include("../partials/flash.ejs") %> 
+    <h1><%= portfolio.name %> </h1>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+
+        <% portfolio.gallery.forEach((element,index)=>{ %>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%= index %>"  class=<%= index===0?"active":""%> 
+               aria-current=<%= index===0?"true":"false" %>  aria-label="Slide <%= index %> "></button>
+        
+        <% }) %>
+        </div>
+        <div class="carousel-inner">
+            <% portfolio.gallery.forEach((element,index)=>{ %>
+                <div class="carousel-item <%= index===0? "active": ""%> ">
+                    <img style="width: 100px; height: 50vh;" src="<%= element.url %>" class="d-block w-100" alt="Invalid Image">
+                </div>
+                     
+                <% }) %> 
+
+
+
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <h2>Main Programming Language: <%= portfolio.programmingLanguage %> </h2>
+    <p>Description: <%= portfolio.description %> </p>
+    <a href="<%= portfolio.linkToGitHub %> ">Link to project Github</a>
+    <p>Created On: <%= portfolio.createDate.toLocaleString() %> </p>
+
+    <div class="mb-3">
+    <a href="/portfolios/<%= portfolio._id %>/update"><button>Update</button></a>
+    <form style="display: inline;"  action="/portfolios/<%= portfolio._id %>/confirmDelete" method="get">
+        <button type="submit">Delete</button>
+    </form>
+    </div>
+</main>
+</body>
