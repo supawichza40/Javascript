@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This Month Special Offer</title>
+</head>
+<body>
+    <main>
+        <article>
+            <h1>This Month Special Offer</h1>
+            <% for(let offer of offers){ %> 
+                <section>
+                   <h1>Name: <%= offer.name %> </h1> 
+                   <h2>Price: £ <%= offer.price  %> </h2>
+                   <img src="<%= offer.image %> " alt="Image not found!">
+                   <h4>Expired On: <%= new Date(offer.expiredDate).toDateString() %> </h4>
+                   <a href="/offers/<%= offer._id %> "><button>Detail</button></a>
+                </section>
+                <% } %> 
+        </article>
+    </main>
+</body>
+</html>
