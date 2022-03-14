@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updating Massage</title>
+</head>
+<body>
+    <main>
+        <article>
+            <form action="/treatments/massages/<%= massage._id %>?_method=PATCH" method="post">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" value="<%= massage.name %>">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" cols="30" rows="10"><%= massage.description %></textarea>
+                <label for="benefit">Benefit</label>
+                <textarea name="benefit" id="benefit" cols="30" rows="10"><%= massage.benefit %></textarea>
+                <button type="submit">Update Massage</button>
+            </form>
+            <form action="/treatments/massages/<%= massage._id %>/update/prices?_method=PATCH" method="post">
+                 
+                    <table>
+                        <tr>
+                            <th>Duration</th>
+                            <th>Prices</th>
+                            <th>Delete?</th>
+                        </tr>
+                        <% if (massage.prices!=null){ %> 
+
+                            <% for(let price of massage.prices){ %>
+                                <tr>
+                                    <td><%= price.duration %> </td>
+                                    <td> <%= price.amount %> </td>
+                                    
+                                    <td> <input type="checkbox" name="toDelete" id="toDelete" value="<%= price._id %>"></td>
+                                </tr>
+                                <% } %>
+                            <% } %> 
+                    </table>
+                    <label for="duration">Duration</label>
+                    <input type="text" name="duration" id="duration">
+                    <label for="amount">Amount</label>
+                    <input type="number" name="amount" id="amount">
+                    <button type="submit">Add price/Delete</button>
+                    
+            </form>
+        </article>
+    </main>
+</body>
+</html>

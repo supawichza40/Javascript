@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waxing</title>
+</head>
+<body>
+    <main>
+        <article>
+            <h1>Waxing Treatments Available</h1>
+            <p>Waxing is a form of semi-permanent hair removal which removes the hair from the root. New hair will not grow back in the
+            previously waxed area for four to six weeks, although some people will start to see regrowth in only a week due to some
+            of their hair being on a different growth cycle. Almost any area of the body can be waxed, including eyebrows, face,
+            pubic area (called bikini waxing), legs, arms, back, abdomen, and feet. There are many types of waxing suitable for
+            removing unwanted hair.</p>
+            <a href="https://en.wikipedia.org/wiki/Waxing">Ref: Wiki-Waxing </a>
+        </article>
+        <article>
+            <a href="/treatments/waxings/update"><button>Update Waxing</button></a>
+            <h1>Waxing</h1>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Duration</th>
+                    <th>Price</th>
+                </tr>
+                <% for(let waxing of waxings){ %> 
+                    <tr>
+                        <td><%= waxing.name %> </td>
+                        <td><%= waxing.duration %> </td>
+                        <td>£<%= waxing.price %></td>
+                    </tr>
+                    <% } %> 
+            </table>
+        </article>
+    </main>
+</body>
+</html>

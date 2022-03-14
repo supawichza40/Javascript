@@ -10,6 +10,17 @@
     <main>
         <article>
             <h1>Contacts</h1>
+            <form action="/contacts/success" method="post">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+                <label for="phone">Home/Mobile Number</label>
+                <input type="tel" name="phone" id="phone" 
+                        pattern="[0]{1}[0-9]{10}">
+                <small>pattern:07737515000</small>
+                <button type="submit">Contact Us</button>
+            </form>
         </article>
     </main>
 </body>

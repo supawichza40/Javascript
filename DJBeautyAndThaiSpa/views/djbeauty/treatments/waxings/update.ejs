@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Waxing</title>
+</head>
+<body>
+    <main>
+        <article>
+            <form action="/treatments/waxings?_method=PATCH" method="post">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name">
+                <label for="duration">Duration</label>
+                <input type="text" name="duration" id="duration">
+                <label for="price">Price</label>
+                <input type="number" name="price" id="price">
+
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Duration</th>
+                        <th>Price</th>
+                        <th>Delete?</th>
+                    </tr>
+                    <% for(let waxing of waxings){ %> 
+                        <tr>
+                            <td><%= waxing.name  %> </td>
+                            <td><%= waxing.duration %> </td>
+                            <td><%= waxing.price %> </td>
+                            <td><input type="checkbox" name="deleted" id="deleted" value="<%= waxing._id %>"></td>
+
+                        </tr>
+                        <% } %> 
+                </table>
+                <button type="submit">Update</button>
+            </form>
+        </article>
+    </main>
+</body>
+</html>

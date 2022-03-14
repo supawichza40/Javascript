@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Massage</title>
+</head>
+<body>
+    <main>
+        <article>
+            <h1>New Massage</h1>
+            <form action="/treatments/massages" method="post">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                <label for="benefit">Benefit</label>
+                <textarea name="benefit" id="benefit" cols="30" rows="10"></textarea>
+                <button type="submit">Create New Massage</button>
+            </form>
+        </article>
+    </main>
+</body>
+</html>

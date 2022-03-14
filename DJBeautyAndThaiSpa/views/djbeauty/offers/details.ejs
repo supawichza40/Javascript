@@ -15,6 +15,9 @@
             <p>Description: <%= offer.description %> </p>
             <p>Created On:<%= new Date(offer.createdDate).toDateString() %></p>
             <p>Expired On: <%= new Date(offer.expiredDate).toDateString() %> </p>
+            <form action="/offers/<%= offer._id %>?_method=DELETE" method="post">
+                <button type="submit">Delete</button>
+            </form>
         </article>
     </main>
 </body>

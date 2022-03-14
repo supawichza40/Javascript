@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Massage Detail</title>
+</head>
+<body>
+    <main>
+        <article><h1>Massage Detail</h1></article>
+        <h2>Name:<%= massage.name %> </h2>
+        <p>Description:<%= massage.description %> </p>
+        <p>Benefit:<%= massage.benefit %> </p>
+        <% for(let p of massage.prices){ %> 
+            <p>Duration: <%= p.duration %> Price: <%= p.amount %>  </p>
+            <% } %> 
+        
+        <a href="/treatments/massages/<%= massage._id %>/update"><button>Update</button></a>
+        <form action="/treatments/massages/<%= massage._id %>?_method=DELETE" method="post">
+            <button type="submit">Delete</button>
+        </form>
+    </main>
+</body>
+</html>
