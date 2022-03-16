@@ -5,7 +5,10 @@ const Massage = require("../../models/massage")
 main().catch(err => console.log(err));
 
 async function main() {
-    await mongoose.connect('mongodb://localhost:27017/DJBeauty');
+    await mongoose.connect('mongodb://127.0.0.1:27017/DJBeauty'); //Does work 
+    // await mongoose.connect('mongodb://localhost:27017/djbeauty');//Does not work on home computer
+
+        //   mongoose.connect("mongodb://127.0.0.1:27017/yelp-camp"
 }
 
 const seedMassage = async() => {

@@ -23,7 +23,8 @@ app.use(methodOverride("_method"));
 main().catch(err => console.log(err));
 
 async function main() {
-    await mongoose.connect('mongodb://localhost:27017/DJBeauty');
+        await mongoose.connect('mongodb://127.0.0.1:27017/DJBeauty'); //Does work 
+
 }
 const convertDateToMiliSecond = function (dateString) {
     var date = new Date(dateString);

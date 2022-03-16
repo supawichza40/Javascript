@@ -1,25 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Massages</title>
-</head>
+<% layout("djbeauty/layouts/boilerplate.ejs") %>
 <body>
-    <main>
+  <main>
+    <div class="row">
+      <div class="col-2">
+        <nav class="navbar sticky-top" style="top: 60px">
+          <ul>
+            <% massages.forEach((massage,index)=>{ %>
+            <a href="#<%= massage.name %>-<%= index %>  "
+              ><li><%= massage.name %></li></a
+            >
+            <% }) %>
+          </ul>
+        </nav>
+      </div>
+      <div class="col-9">
         <article>
-            <h1>Massages</h1>
-            <% for(let massage of massages) {%> 
-                    <h2>Name:<%= massage.name %> </h2>
-                    <p>Description:<%= massage.description %> </p>
-                    <p>Benefit: <%= massage.benefit %> </p>
-                    <% for(let p of massage.prices ) {%> 
-                            <p>Duration:<%= p.duration %> Price:<%= p.amount %>  </p>
-                    <% } %>
-                    <a href="/treatments/massages/<%= massage._id %> "><button>Detail</button></a> 
-            <% } %> 
+          <h1>Massages</h1>
+          <% massages.forEach((massage,index)=>{%>
+          <h2 id="<%= massage.name %>-<%= index  %>">
+            Name:<%= massage.name %>
+          </h2>
+          <p>Description:<%= massage.description %></p>
+          <p>Benefit: <%= massage.benefit %></p>
+          <% for(let p of massage.prices ) {%>
+          <p>Duration:<%= p.duration %> Price:<%= p.amount %></p>
+          <% } %>
+          <a href="/treatments/massages/<%= massage._id %> "
+            ><button>Detail</button></a
+          >
+          <% }) %>
         </article>
-    </main>
+      </div>
+    </div>
+  </main>
 </body>
-</html>
