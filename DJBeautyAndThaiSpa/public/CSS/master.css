@@ -1,0 +1,53 @@
+main{
+    margin-top: 10px;
+}
+.sidebarCss li a :hover{
+    color: aqua;
+}
+
+.nav1:hover{
+    color:yellow;
+}
+.sidebarCss li a{
+    color: rgb(255, 255, 255);
+}
+.sidebarCss li a:hover{
+    color: yellow;
+    text-decoration:underline;
+    text-decoration-color: white;
+}
+.treatments-div button{
+    margin:5px;
+}
+.home{
+
+    height: 100%;
+    padding: 5% 30% 5% 5% ;
+    margin: 0 0 0 0;
+    font-size: 3rem;
+}
+.boilerplate_withImage{
+    background-image: linear-gradient(rgba(255,255,255,0.7),rgba(255,255,255,0.7)),url("/images/homeImage.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    margin: 0 0 0 0;
+    
+}
+.home h1{
+    font-size: 1.5em;
+}
+.center{
+
+    margin: 0 auto;
+  
+}
+.carparkStyle li{
+    list-style-type: none;
+}
+.carparkStyle article{
+    border: 2px solid rgb(0, 0, 0);
+}
+.carparkStyle h1{
+    font-size: 3.5em;
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="/weather_icon/animated/day.svg" alt="">
+    <h1>Test server</h1>
+    <!-- format calling djWeatherData.hourly[0].dt -->
+    <h3>Today Date: <%= new Date(Date.now()).toDateString() %> </h3>
+    <!-- Vertical weather table -->
+    <table style="width: 100%;">
+        <tr>
+            <th>Time</th>
+            <td>Temp</td>
+            <td>Description</td>
+            <td>Icon</td>
+        </tr>
+
+        <% djWeatherData.hourly.forEach((object,index)=>{ %> 
+            <tr>
+                <!-- new Date(offer.expiredDate).toDateString() -->
+                <!-- object.dt -->
+                <!-- openweathermap is in second not milisecond. -->
+                <th><%= `${new Date(object.dt*1000).getHours()}:00`  %> </th> 
+                <!-- <td><%= new Date(object.dt*1000).toTimeString() %> </td> -->
+                <td><%= object.temp %> </td>
+                <td><%= object.weather[0].main %> </td>
+                <td><div id="icon"><img id="wicon" src='http://openweathermap.org/img/w/<%= object.weather[0].icon  %>.png' alt="Weather icon"></div></td>
+            </tr>
+            <% }) %> 
+
+    </table>
+    <!-- horizontal weather table -->
+    <table style="width:5%; font-size: 10px;text-align: center;">
+        <tr>
+            <th>Time:</th>
+            <% djWeatherData.hourly.some((object,index)=>{ %>
+                    <!-- new Date(offer.expiredDate).toDateString() -->
+                    <!-- object.dt -->
+                    <!-- openweathermap is in second not milisecond. -->
+                    <td>
+                        <%= `${new Date(object.dt*1000).getHours()}:00` %>
+                    </td>
+                    <% return index==10 %> 
+                    <!-- <td><%= new Date(object.dt*1000).toTimeString() %> </td> -->
+                <% }) %>
+        </tr>
+        <tr>
+            <th>Temperature:</th>
+            <% djWeatherData.hourly.some((object,index)=>{ %>
+                    <td>
+                        <%= Math.floor(object.temp)  %>&#8451;
+                    </td>
+                    <% return index==10 %> 
+                <% }) %>
+        </tr>
+        <tr>
+            <th>Description:</th>
+            <% djWeatherData.hourly.some((object,index)=>{ %>
+                    <td>
+                        <%= object.weather[0].main %>
+                    </td>
+                    <% return index==10 %> 
+                <% }) %>
+        </tr>
+        <tr>
+            <th>Icon</th>
+            <% djWeatherData.hourly.some((object,index)=>{ %>
+                    <td>
+                        <div id="icon"><img id="wicon" src='http://openweathermap.org/img/w/<%= object.weather[0].icon  %>.png'
+                                alt="Weather icon"></div>
+                    </td>
+                    <% return index==10 %> 
+                <% }) %>
+        </tr>
+    </table>
+    
+
+
+
+</body>
+</html>

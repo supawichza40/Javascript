@@ -9,7 +9,7 @@ var bodyParser = require("body-parser");
 const Massage = require("./models/massage")
 const sendMessageToCustomer = require("./sendingMail")
 const AppError = require("./error")
-
+const djbeautyWeatherData = require("./getDJWeatherData")
 if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
 }
@@ -19,7 +19,11 @@ app.set("views", path.join(__dirname, "views"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.engine("ejs", ejsMate);
 app.use(methodOverride("_method"));
-
+app.use(async(req, res, next) => {
+    res.locals.test = "aloha"
+    // res.locals.djWeatherData = await djbeautyWeatherData()
+    next();
+})
 main().catch(err => console.log(err));
 
 async function main() {
@@ -72,7 +76,10 @@ function wrapAsync(fn) {
 app.get("/error", wrapAsync((req, res) => {
     throw new AppError(404,"This is new error")
 }))
-app.get("/", (req, res) => {
+app.get("/test", (req, res) => {
+    res.render("djbeauty/test.ejs")
+})
+app.get("/", async(req, res) => {
     res.render("djbeauty/home.ejs")
 })
 app.get("/offers", async(req, res) => {

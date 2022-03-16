@@ -2,18 +2,8 @@
 <body>
   <main>
     <div class="row">
-      <div class="col-2">
-        <nav class="navbar sticky-top" style="top: 60px">
-          <ul>
-            <% massages.forEach((massage,index)=>{ %>
-            <a href="#<%= massage.name %>-<%= index %>  "
-              ><li><%= massage.name %></li></a
-            >
-            <% }) %>
-          </ul>
-        </nav>
-      </div>
-      <div class="col-9">
+      <div class="col-2"></div>
+      <div class="col-8">
         <article>
           <h1>Massages</h1>
           <% massages.forEach((massage,index)=>{%>
@@ -30,6 +20,19 @@
           >
           <% }) %>
         </article>
+      </div>
+      <div class="col-2">
+        <nav class="navbar sticky-top" style="top: 60px">
+          <ul>
+            <% massages.forEach((massage,index)=>{ %>
+              <a href="#<%= massage.name %>-<%= index %>  ">
+                <li>
+                  <%= massage.name %>
+                </li>
+              </a>
+              <% }) %>
+          </ul>
+        </nav>
       </div>
     </div>
   </main>

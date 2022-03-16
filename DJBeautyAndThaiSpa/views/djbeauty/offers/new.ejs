@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Offer</title>
-</head>
-<body>
+<% layout("djbeauty/layouts/boilerplate.ejs") %>
+
+<main>
     <form action="/offers" method="post">
         <label for="name">Name</label>
         <input type="text" name="name" id="name">
@@ -20,5 +14,6 @@
         <input type="date" name="expiredDate" id="expiredDate">
         <button type="submit">Submit</button>
     </form>
+</main>
 </body>
 </html>

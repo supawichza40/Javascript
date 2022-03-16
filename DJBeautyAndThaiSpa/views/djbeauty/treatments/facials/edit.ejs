@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Facial</title>
-</head>
+<% layout("djbeauty/layouts/boilerplate.ejs") %>
 <body>
+    <main class="container">
     <form action="/treatments/facials/<%= facial._id %>?_method=PATCH" method="POST">
         <label for="name">Name</label>
         <input type="text" name="name" id="name" value="<%= facial.name %> ">
@@ -18,5 +12,6 @@
         <input type="number" name="price" id="price" value="<%= facial.price.toString() %>">
         <button type="submit">Update Facial</button>
     </form>
+    </main>
 </body>
 </html>

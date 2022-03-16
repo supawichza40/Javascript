@@ -1,16 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Treatments</title>
-</head>
+<% layout("djbeauty/layouts/boilerplate.ejs") %>
 <body>
-    <main>
-        <article>
+    <main class="container">
+        <article class="text-center">
             <h1>Treatments</h1>
             <h2>Click on any treatment for more information.</h2>
+            <div class="row treatments-div">
+                <div class="col-4">
+                    <a href="/treatments/massages"><button class="btn btn-warning">Massages</button></a>
+                    <img src="/images/massage.jpeg" alt="" style="height: 300px;width: 450px;">
+                </div>
+                <div class="col-4">
+                    <a href="/treatments/facials"><button class="btn btn-success">Facials</button></a>
+                    <img src="/images/facial.jpeg" alt="" style="height: 300px;width: 450px;">
+                </div>
+                <div class="col-4">
+                    <a href="/treatments/waxings"><button class="btn btn-warning">Waxings</button></a>
+                    <img src="/images/waxing.jpeg" alt="" style="height: 300px;width: 450px;">
+                </div>
+
+            </div>
             
         </article>
     </main>
