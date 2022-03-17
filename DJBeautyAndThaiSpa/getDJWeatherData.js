@@ -2,7 +2,7 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config({ path: __dirname + "/.env" });
 
 }
-api = process.env.OPENWEATHER_API;
+api = `https://api.openweathermap.org/data/2.5/onecall?lat=51.6562841&lon=-0.2037832&units=metric&appid=${process.env.OPENWEATHER_API}`
 
 // const getTodayWeather = async () => {
 //   const result = await fetch(api);

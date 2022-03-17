@@ -13,6 +13,11 @@ const massageSchema = new mongoose.Schema({
         type: String,
         
     },
+    images: [
+        {
+          type:String
+      }  
+    ],
     prices: [{
         duration: {
             type: String,

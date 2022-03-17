@@ -1,95 +1,132 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  
   <div class="container-fluid">
     <div class="row">
-    <div class="col-3">
-      <h4 class="text-light text-center">Date:</h4>
-      <h6 class="text-light text-center"><%= new Date(Date.now()).toDateString() %>
-      </h6>
-    </div>
-    <div class="col-9"> 
-    <a class="navbar-brand" href="#">D&J Beauty and Thai Spa</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/introduction">Introduction</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/treatments">Treatments</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/contacts">Contacts</a>
-        </li>
-      </ul>
-    </div>
-    </div>
+      <div class="col-3">
+        <h4 class="text-light text-center">Date:</h4>
+        <h6 class="text-light text-center">
+          <%= new Date(Date.now()).toDateString() %>
+        </h6>
+      </div>
+      <div class="col-9">
+        <a class="navbar-brand" href="#">D&J Beauty and Thai Spa</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/introduction">Introduction</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/treatments">Treatments</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contacts">Contacts</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                data-bs-toggle="dropdown"
+              >
+                Hover me
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#"> Submenu item 1</a></li>
+                <li><a class="dropdown-item" href="#"> Submenu item 2 </a></li>
+                <li><a class="dropdown-item" href="#"> Submenu item 3 </a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
   <div class="mx-3 px-3">
-        <!-- horizontal weather table -->
-        <table style="width:5%; font-size: 12px;text-align: center;" class="text-light">
-          <tr>
-            <th>Time:</th>
-            <% djWeatherData.hourly.some((object,index)=>{ %>
-              <!-- new Date(offer.expiredDate).toDateString() -->
-              <!-- object.dt -->
-              <!-- openweathermap is in second not milisecond. -->
-              <td>
-                <%= `${new Date(object.dt*1000).getHours()}:00` %>
-              </td>
-              <% return index==10 %>
-                <!-- <td><%= new Date(object.dt*1000).toTimeString() %> </td> -->
-                <% }) %>
-          </tr>
-          <tr>
-            <th>Temperature:</th>
-            <% djWeatherData.hourly.some((object,index)=>{ %>
-              <td>
-                <%= Math.floor(object.temp) %>&#8451;
-              </td>
-              <% return index==10 %>
-                <% }) %>
-          </tr>
-          <tr>
-            <th>Description:</th>
-            <% djWeatherData.hourly.some((object,index)=>{ %>
-              <td>
-                <%= object.weather[0].main %>
-              </td>
-              <% return index==10 %>
-                <% }) %>
-          </tr>
-          <tr>
-            <th>Icon</th>
-            <% djWeatherData.hourly.some((object,index)=>{ %>
-              <td style="width: 10px;height:10px;">
-                <!-- <% if(object.weather[0].main.toLowerCase() == "rain"){ %> 
-                    <img src="/weather_icon/animated/rainy-1.svg" alt="">
-                  <% } else if(object.weather[0].main.toLowerCase() == "clouds") { %> 
-                    <img src="/weather_icon/animated/cloudy.svg" alt="">
-                  <% } else if(object.weather[0].main.toLowerCase()=="sunny" ) { %>
-                    <img src="/weather_icon/animated/weather.svg" alt="">
-                    <% } %> -->
-                <div id="icon"><img id="wicon" src='http://openweathermap.org/img/wn/<%= object.weather[0].icon  %>.png'
-                    alt="Weather icon"></div>
-              </td>
-              <% return index==10 %>
-                <% }) %>
-          </tr>
-        </table>
+    <!-- horizontal weather table -->
+    <table
+      style="width: 5%; font-size: 12px; text-align: center"
+      class="text-light"
+    >
+      <tr>
+        <th>Time:</th>
+        <% djWeatherData.hourly.some((object,index)=>{ %>
+        <!-- new Date(offer.expiredDate).toDateString() -->
+        <!-- object.dt -->
+        <!-- openweathermap is in second not milisecond. -->
+        <td><%= `${new Date(object.dt*1000).getHours()}:00` %></td>
+        <% return index==10 %>
+        <!-- <td><%= new Date(object.dt*1000).toTimeString() %> </td> -->
+        <% }) %>
+      </tr>
+      <tr>
+        <th>Temperature:</th>
+        <% djWeatherData.hourly.some((object,index)=>{ %>
+        <td><%= Math.floor(object.temp) %>&#8451;</td>
+        <% return index==10 %> <% }) %>
+      </tr>
+      <tr>
+        <th>Description:</th>
+        <% djWeatherData.hourly.some((object,index)=>{ %>
+        <td><%= object.weather[0].main %></td>
+        <% return index==10 %> <% }) %>
+      </tr>
+      <tr>
+        <th>Icon</th>
+        <% djWeatherData.hourly.some((object,index)=>{ %>
+        <td style="width: 10px; height: 10px">
+          <% if(object.weather[0].main.toLowerCase() == "rain"){ %>
+          <img src="/weather_icon/animated/rainy-1.svg" alt="" />
+          <% } else if(object.weather[0].main.toLowerCase() == "clouds") { %>
+          <img src="/weather_icon/animated/cloudy.svg" alt="" />
+          <% } else if(object.weather[0].main.toLowerCase()=="sunny" ) { %>
+          <img src="/weather_icon/animated/day.svg" alt="" />
+          <% } else if(object.weather[0].main.toLowerCase()=="clear" ) { %>
+          <img src="/weather_icon/animated/day.svg" alt="" />
+          <% } %>
+          <!-- <div id="icon">
+            <img
+              id="wicon"
+              src="http://openweathermap.org/img/wn/<%= object.weather[0].icon  %>.png"
+              alt="Weather icon"
+            />
+          </div> -->
+        </td>
+        <% return index==10 %> <% }) %>
+      </tr>
+    </table>
+  </div>
+  <div class="mr-5">
+    <script src="https://widget.treatwell.co.uk/common/venue-menu/javascript/widget-button.js"></script>
+    <script>
+      (function () {
+        var link = document.createElement("link");
+        link.type = "text/css";
+        link.href =
+          "https://widget.treatwell.co.uk/common/venue-menu/css/widget-button.css";
+        link.rel = "stylesheet";
+        link.media = "screen";
+        document.getElementsByTagName("head")[0].appendChild(link);
+      })();
+    </script>
+    <a
+      href="https://www.treatwell.co.uk/"
+      id="wahanda-online-booking-widget"
+      onclick='wahanda.openOnlineBookingWidget("https://widget.treatwell.co.uk/place/370180/menu/"); return false;'
+      target="_blank"
+    >
+      <span>Book now!</span>
+    </a>
   </div>
 </nav>
