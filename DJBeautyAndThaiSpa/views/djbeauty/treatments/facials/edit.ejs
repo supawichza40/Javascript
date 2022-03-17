@@ -1,7 +1,7 @@
 <% layout("djbeauty/layouts/boilerplate.ejs") %>
 <body>
     <main class="container">
-    <form action="/treatments/facials/<%= facial._id %>?_method=PATCH" method="POST">
+    <form action="/treatments/facials/<%= facial._id %>?_method=PATCH" method="POST" enctype="multipart/form-data">
         <label for="name">Name</label>
         <input type="text" name="name" id="name" value="<%= facial.name %> ">
         <label for="description">Description</label>
@@ -10,6 +10,14 @@
         <input type="text" name="duration" id="duration" value="<%= facial.duration %> ">
         <label for="price">Price</label>
         <input type="number" name="price" id="price" value="<%= facial.price.toString() %>">
+        <label for="image">Image</label>
+        <input type="file" name="image" id="image" multiple>
+
+        <% facial.images.forEach((image,index)=>{ %> 
+                <img style="height: 300px; width: 400px;" src="<%= image.url %>" alt="">
+                <input type="checkbox" name="deletedImage" id="image<%= index %>" value="<%= image.filename  %>">
+                <label for="image<%= index %>">Delete?</label>
+            <% }) %> 
         <button type="submit">Update Facial</button>
     </form>
     </main>

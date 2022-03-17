@@ -1,11 +1,11 @@
 <% layout("djbeauty/layouts/boilerplate.ejs") %>
 
 <main>
-    <form action="/offers" method="post">
+    <form action="/offers" method="post" enctype="multipart/form-data">
         <label for="name">Name</label>
         <input type="text" name="name" id="name">
         <label for="image">Image</label>
-        <input type="text" name="image" id="image">
+        <input type="file" name="image" id="image" multiple>
         <label for="price">Price</label>
         <input type="number" name="price" id="price">
         <label for="description">Description</label>

@@ -13,6 +13,14 @@ const facialSchema = new mongoose.Schema({
         type: String,
         required:true
     },
+    images: [{
+        url: {
+            type:String,
+        },
+        filename: {
+            type:String
+        }  
+    }],
     price: {
         type: Number,
         required:true

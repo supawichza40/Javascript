@@ -1,5 +1,5 @@
-const val = [1, 2, 3, 4, 5]
+deletedImage = ['DJBeauty/kufce6gf7uhfvplxcuxd', 'DJBeauty/vejhhlpuuoubu6vaoibq']
+deletedImage1 = 'DJBeauty/kufce6gf7uhfvplxcuxd';
 
-val.forEach((element,index) => {
-    console.log(element);
-});
+console.log(typeof (deletedImage1))
+console.log(...(deletedImage))

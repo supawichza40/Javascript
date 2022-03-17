@@ -9,10 +9,40 @@ var bodyParser = require("body-parser");
 const Massage = require("./models/massage")
 const sendMessageToCustomer = require("./sendingMail")
 const AppError = require("./error")
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const { storage, cloudinary } = require("./cloudinary/index")
+const multer = require("multer");
+const upload = multer({storage})
 const djbeautyWeatherData = require("./getDJWeatherData")
+const session = require("express-session");
+const passport = require("passport")
+const localStrategy = require("passport-local");
+const User = require("./models/user");
+
+const sessionConfig = {
+    secret: "this should be a secret",
+    resave: true,
+    saveUninitialized: true,
+    // cookie: { secure: true }
+    cookie: {
+        //so the expire is use if expire reach user will be force to log out.
+        httpOnly: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,//Expire a week from now.
+        maxAge: 1000 * 60 * 60 * 24 * 7
+
+    }
+}
 if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
 }
+app.use(session(sessionConfig));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new localStrategy(User.authenticate()))
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
 app.use(express.static(path.join(__dirname, "/public")))
 
 app.set("views", path.join(__dirname, "views"));
@@ -140,11 +170,13 @@ app.get("/treatments/massages/:id", async (req, res) => {
     const getMassageById = await Massage.findById(req.params.id);
     res.render("djbeauty/treatments/massages/details.ejs",{massage:getMassageById})
 })
-app.post("/treatments/massages", async(req, res) => {
+app.post("/treatments/massages",upload.array("image"), async(req, res) => {
     console.log(req.body);
     req.body.prices = [];
     console.log(req.body)
     const newMassage = new Massage(req.body);
+    const filterFiles = req.files.map(file => ({ url: file.path, filename: file.filename }));
+    newMassage.images.push(...filterFiles);
     await newMassage.save();
     res.redirect("/treatments/massages");
     
@@ -164,9 +196,31 @@ app.patch("/treatments/massages/:id/update/prices", async(req, res) => {
     }
     res.redirect(`/treatments/massages/${req.params.id}/update`);
 })
-app.patch("/treatments/massages/:id", async(req, res) => {
-    console.log(req.body)
-    const foundMassageById = await Massage.findByIdAndUpdate(req.params.id, req.body);
+app.patch("/treatments/massages/:id", upload.array("image"), async(req, res) => {
+    console.log(req.body, req.files)
+    //update req.body 
+    await Massage.findByIdAndUpdate(req.params.id, req.body);
+    //update file to database
+    const filterFiles = req.files.map(file => ({ url: file.path, filename: file.filename }));
+    const foundMassage = await Massage.findById(req.params.id);
+    foundMassage.images.push(...filterFiles)
+    await foundMassage.save()
+    //delete select image on cloudinary
+    if (req.body.deletedImage) {
+        if (req.body.deletedImage.constructor === Array) {
+            for (let filename of req.body.deletedImage) {
+                console.log("I am inside")
+               await cloudinary.uploader.destroy(filename)
+            }
+        }
+        else {
+            await cloudinary.uploader.destroy(req.body.deletedImage)
+        }
+        //delete selected image on database
+        const foundMassageById = await Massage.findById(req.params.id);
+        await foundMassageById.updateOne({ $pull: { images: { filename: { $in: req.body.deletedImage } } } })
+    }
+
     res.redirect(`/treatments/massages/${req.params.id}`)
 })
 app.delete("/treatments/massages/:id", async (req, res) => {
@@ -199,8 +253,11 @@ app.get("/treatments/facials", async(req, res) => {
 app.get("/treatments/facials/new", (req, res) => {
     res.render("djbeauty/treatments/facials/new.ejs");
 })
-app.post("/treatments/facials", async(req, res) => {
+app.post("/treatments/facials",upload.array("image"), async (req, res) => {
+    console.log(req.files,req.body)
     const newFacial = new Facial(req.body);
+    const mappedImageInfo = req.files.map((file) => ({ url: file.path, filename: file.filename }));
+    newFacial.images.push(...mappedImageInfo);
     await newFacial.save();
     res.redirect("/treatments/facials")
 })
@@ -212,12 +269,43 @@ app.get("/treatments/facials/:id/edit",async (req, res) => {
     const foundFacialById = await (Facial.findById(req.params.id))
     res.render("djbeauty/treatments/facials/edit.ejs", { facial: foundFacialById });
 })
-app.patch("/treatments/facials/:id", async(req, res) => {
-    const foundFacial = await Facial.findByIdAndUpdate(req.params.id, req.body)
+app.patch("/treatments/facials/:id", upload.array("image"), async (req, res) => {
+    console.log(req.files, req.body)
+    //update normal field
+    await Facial.findByIdAndUpdate(req.params.id, req.body)
+    //update new file that uploaded
+    const getFileInfo = req.files.map(file => ({ url: file.path, filename: file.filename }))
+    const foundFacial = await Facial.findById(req.params.id);
+    foundFacial.images.push(...getFileInfo);
+    await foundFacial.save();
+    //delete image that is in checkbox.
+    console.log(req.body.deletedImage)
+    if(req.body.deletedImage){
+        if (req.body.deletedImage.constructor === Array) {
+            console.log("This is array")
+            console.log(req.body.deletedImage)
+            for (let deleteImage of req.body.deletedImage) {
+                
+                await cloudinary.uploader.destroy(deleteImage);
+            }
+        }
+        else {
+            await cloudinary.uploader.destroy(req.body.deletedImage);
+        }
+        const foundFacial = await Facial.findById(req.params.id);
+        await foundFacial.updateOne({ $pull: { images: { filename: { $in: req.body.deletedImage } } } })
+    }
+    //remove data in our database for images.
+    foundFacial.updateOne({$pull:{images:{filename:{$in:req.body.deletedImage}}}})
+    
     res.redirect(`/treatments/facials/${req.params.id}`)
 
 })
-app.delete("/treatments/facials/:id", async(req, res) => {
+app.delete("/treatments/facials/:id", async (req, res) => {
+    const foundFacialUsingId = await Facial.findById(req.params.id);
+    const getFilenameFromImage = foundFacialUsingId.images.map(image => ( image.filename ))
+    console.log(getFilenameFromImage)
+    await cloudinary.uploader.destroy(...getFilenameFromImage);
     const foundFacial = await Facial.findByIdAndDelete(req.params.id);
     res.redirect(`/treatments/facials`)
 

@@ -2,13 +2,20 @@
 <body>
     <main class="container">
         <article>
-            <form action="/treatments/massages/<%= massage._id %>?_method=PATCH" method="post">
+            <form action="/treatments/massages/<%= massage._id %>?_method=PATCH" method="post" enctype="multipart/form-data">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" value="<%= massage.name %>">
+                <label for="images">Images</label>
+                <input type="file" name="image" id="image" multiple>
                 <label for="description">Description</label>
                 <textarea name="description" id="description" cols="30" rows="10"><%= massage.description %></textarea>
                 <label for="benefit">Benefit</label>
                 <textarea name="benefit" id="benefit" cols="30" rows="10"><%= massage.benefit %></textarea>
+                <% for(let image of massage.images ) {%> 
+                        <img src="<%= image.url %> " alt="">
+                        <label for="deleteImage">Delete?</label>
+                        <input type="checkbox" name="deletedImage" id="deletedImage" value="<%= image.filename %>">
+                    <% } %> 
                 <button type="submit">Update Massage</button>
             </form>
             <form action="/treatments/massages/<%= massage._id %>/update/prices?_method=PATCH" method="post">

@@ -3,9 +3,11 @@
     <main class="container">
         <article>
             <h1>New Massage</h1>
-            <form action="/treatments/massages" method="post">
+            <form action="/treatments/massages" method="post" enctype="multipart/form-data">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name">
+                <label for="image">Images</label>
+                <input type="file" name="image" id="image" multiple>
                 <label for="description">Description</label>
                 <textarea name="description" id="description" cols="30" rows="10"></textarea>
                 <label for="benefit">Benefit</label>

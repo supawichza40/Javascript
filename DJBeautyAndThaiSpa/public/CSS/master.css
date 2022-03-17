@@ -6,15 +6,15 @@ main {
 }
 
 .nav1:hover {
-  color: yellow;
+  color: goldenrod;
 }
 .sidebarCss li a {
-  color: rgb(255, 255, 255);
+  color: rgb(173, 105, 16)
 }
 .sidebarCss li a:hover {
-  color: yellow;
+  color: goldenrod;
   text-decoration: underline;
-  text-decoration-color: white;
+  text-decoration-color: black;
 }
 .treatments-div button {
   margin: 5px;
@@ -66,4 +66,37 @@ main {
 }
 .card {
   display: inline-block;
+}
+.facial_card{
+  display: inline-block;
+}
+.waxing-table-header th{
+  padding: 10px;
+  margin:10px;
+}
+.waxing-table td{
+  padding: 10px;
+  margin:10px;
+}
+#override-bootstrap-navbar-djname{
+  color:goldenrod;
+  font-size: 2em;
+  text-decoration: underline;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Tangerine', cursive;
+}
+.treatwell-widget{
+  
+  background-color: goldenrod;
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: large;
+  color: rgb(255, 255, 255);
+  border-radius: 8px;
+}
+.treatwell-widget:hover{
+  background-color: burlywood;
+}
+#overwrite-bootstrap-footer{
+  background-color: goldenrod;
+  font-weight: bold;
 }

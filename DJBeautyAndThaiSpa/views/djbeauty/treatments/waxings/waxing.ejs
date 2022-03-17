@@ -1,7 +1,7 @@
 <% layout("djbeauty/layouts/boilerplate.ejs") %>
 <body>
     <main class="container">
-        <article>
+        <article class="text-center" >
             <h1>Waxing Treatments Available</h1>
             <p>Waxing is a form of semi-permanent hair removal which removes the hair from the root. New hair will not grow back in the
             previously waxed area for four to six weeks, although some people will start to see regrowth in only a week due to some
@@ -12,21 +12,59 @@
         </article>
         <article>
             <a href="/treatments/waxings/update"><button>Update Waxing</button></a>
-            <h1>Waxing</h1>
-            <table>
-                <tr>
+            <h1 >Waxing Prices</h1>
+            <table class="center table table-light table-hover table-sm table-striped text-center">
+                <tr class="waxing-table-header">
                     <th>Name</th>
                     <th>Duration</th>
                     <th>Price</th>
                 </tr>
                 <% for(let waxing of waxings){ %> 
-                    <tr>
+                    <tr class="waxing-table">
                         <td><%= waxing.name %> </td>
                         <td><%= waxing.duration %> </td>
                         <td>£<%= waxing.price %></td>
                     </tr>
                     <% } %> 
             </table>
+            <div style="display: flex; flex-direction: row; align-content: center; justify-content: center;">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="height: 700px;width: 1000px;">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="https://hips.hearstapps.com/harpersbazaaruk.cdnds.net/16/32/1470916934-hairremoval.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://images.squarespace-cdn.com/content/v1/5f3aab36de163a5f8f680d3c/1598032952520-5HWG8ETRB4MZ7M48P11O/ladies+face+waxing" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://d3079h9ojn760r.cloudfront.net/media/2018/02/21170538/Screen-Shot-2018-01-25-at-3.15.40-PM.png" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://www.acresfieldleisure.co.uk/wp-content/uploads/2020/02/Lycon-hot-wax.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://www.kellyannsbeauty.co.uk/wp-content/uploads/2018/06/Waxing_New.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://www.addlestonetherapy.co.uk/wp-content/uploads/2017/02/underarm-wax-DPC.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://slikbeauty.com/wp-content/uploads/2018/07/f3ee782d-c645-4f9d-b516-231d0159a678.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://s1.r29static.com/bin/entry/6f9/0,450,2000,1500/x/1893861/image.png" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
         </article>
     </main>
 </body>

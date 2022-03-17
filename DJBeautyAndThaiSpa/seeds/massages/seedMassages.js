@@ -19,11 +19,18 @@ const seedMassage = async() => {
             name: massage[Math.floor(Math.random() * massage.length)],
             description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.Similique ea aperiam in deleniti ad dignissimos explicabo, ipsum numquam culpa laboriosam ullam voluptas labore dolore quaerat? Libero aperiam quae quos aspernatur.",
             benefit: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.Similique ea aperiam in deleniti ad dignissimos explicabo, ipsum numquam culpa laboriosam ullam voluptas labore dolore quaerat? Libero aperiam quae quos aspernatur.",
-            images:["https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/spa-woman-female-enjoying-massage-in-spa-centre-royalty-free-image-492676582-1549988720.jpg"],
-            
+            images:
+            [   
+                    {
+                        url: "https://res.cloudinary.com/kingofgodz/image/upload/v1647518813/DJBeauty/wrhpkmppzhjwogqzespb.png",
+                        filename: "DJBeauty/wrhpkmppzhjwogqzespb"
+                    },
+                    {
+                        url: "https://res.cloudinary.com/kingofgodz/image/upload/v1647518813/DJBeauty/sxvixfzc70lt2uxgtpwa.png",
+                        filename: "DJBeauty/sxvixfzc70lt2uxgtpwa"
+                    }    
+            ],
             prices: [],
-
-
         })
         for (let index = 0; index < price.length; index++){
             newMassage.prices.push({
