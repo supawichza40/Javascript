@@ -106,6 +106,9 @@ function wrapAsync(fn) {
 app.get("/error", wrapAsync((req, res) => {
     throw new AppError(404,"This is new error")
 }))
+app.get("/register", (req, res) => {
+    res.render("djbeauty/register.ejs")
+})
 app.get("/test", (req, res) => {
     res.render("djbeauty/test.ejs")
 })
