@@ -99,4 +99,21 @@ main {
 #overwrite-bootstrap-footer{
   background-color: goldenrod;
   font-weight: bold;
+  
+}
+@media (max-width: 850px){
+  
+  #shop-name{
+    display: none;
+  }
+}
+@media(max-width:850px){
+
+  #shop-logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
 }
