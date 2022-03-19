@@ -1,0 +1,16 @@
+<% layout("djbeauty/layouts/boilerplate.ejs") %>
+
+<body>
+  <main>
+    <h1>Register Here!</h1>
+    <form action="/register/success" method="post">
+      <label for="username">username</label>
+      <input type="text" name="username" id="username" />
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" />
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" />
+      <button type="submit">Register</button>
+    </form>
+  </main>
+</body>

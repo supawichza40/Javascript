@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
+  <div class="container-fluid" style="width: 70vw">
     <div class="row">
       <div class="col-3">
         <h4 class="text-light text-center">Date:</h4>
@@ -8,10 +8,10 @@
         </h6>
       </div>
       <div class="col-9">
-        <a class="navbar-brand" id="override-bootstrap-navbar-djname"  href="#">
-          <img src="/images/djlogo.png" alt="">
-           
-           <i>D&J Beauty and Thai Spa</i>
+        <a class="navbar-brand" id="override-bootstrap-navbar-djname" href="#">
+          <img src="/images/djlogo.png" alt="" />
+
+          <i>D&J Beauty and Thai Spa</i>
         </a>
         <button
           class="navbar-toggler"
@@ -27,11 +27,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/"><i class="fa-solid fa-house"></i>  Home</a>
+              <a class="nav-link active" aria-current="page" href="/"
+                ><i class="fa-solid fa-house"></i> Home</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link dropdown-toggle" href="/introduction"
-                >  Introduction</a
+              <a class="nav-link dropdown-toggle" href="/introduction">
+                Introduction</a
               >
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/gallery">Gallery</a></li>
@@ -39,7 +41,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link dropdown-toggle" href="/treatments"
-                ><i class="fa-solid fa-spa"></i>  Treatments</a
+                ><i class="fa-solid fa-spa"></i> Treatments</a
               >
               <ul class="dropdown-menu">
                 <li>
@@ -58,7 +60,9 @@
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="/contacts"><i class="fa-solid fa-address-book"></i>  Contacts</a>
+              <a class="nav-link dropdown-toggle" href="/contacts"
+                ><i class="fa-solid fa-address-book"></i> Contacts</a
+              >
               <ul class="dropdown-menu">
                 <li>
                   <a class="dropdown-item" href="/carpark"
@@ -77,9 +81,49 @@
       </div>
     </div>
   </div>
-  <div class="m-3">
-    <div class="mr-5">
-      <a href="https://widget.treatwell.co.uk/place/d-j-beauty-thai-spa/?utm_source=partner&utm_medium=salon-site-embedded-book-now-widget"><button class="treatwell-widget">BOOK NOW ONLINE!</button></a>
+  <div class="m-3" style="width: 40vw">
+    <div class="row">
+      <div class="col-12"></div>
+      <div class="col-12">
+        <ul class="navbar-nav">
+          <% if(!currentuser){ %>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              style="width: 6vw"
+              aria-current="page"
+              href="/signin"
+              ><i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In</a
+            >
+          </li>
+          <% }else{ %>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              style="width: 9vw; text-align: end"
+              href="/signoff"
+              ><i class="fa-solid fa-person-running"></i> Sign Off</a
+            >
+          </li>
+          <% } %>
+        </ul>
+      </div>
+      <div class="col-12">
+        <a
+          href="https://widget.treatwell.co.uk/place/d-j-beauty-thai-spa/?utm_source=partner&utm_medium=salon-site-embedded-book-now-widget"
+          ><button class="treatwell-widget">BOOK NOW ONLINE!</button></a
+        >
+      </div>
+      <div class="col-12">
+        <table>
+          <tr>
+            <th>Opening Hours:</th>
+          </tr>
+          <tr>
+            <td>Mon - Sun: 10 AM - 9PM</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </nav>

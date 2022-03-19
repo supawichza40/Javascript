@@ -51,6 +51,7 @@ app.engine("ejs", ejsMate);
 app.use(methodOverride("_method"));
 app.use(async(req, res, next) => {
     res.locals.test = "aloha"
+    res.locals.currentuser = req.user;
     // res.locals.djWeatherData = await djbeautyWeatherData()
     next();
 })
@@ -109,10 +110,34 @@ app.get("/error", wrapAsync((req, res) => {
 app.get("/register", (req, res) => {
     res.render("djbeauty/register.ejs")
 })
+app.post("/register/success", async(req, res) => {
+    console.log(req.body)
+    const { username, password, email } = req.body;
+    const user = new User({ username: username, email: email })
+    const newRegisterUser = await (User.register(user, password));
+    req.logIn(newRegisterUser, (err) => {
+        if (err) return next(err);
+        console.log("Welcome to D&J Beauty and Thai Spa")
+        res.redirect("/")
+    })
+})
+app.get("/signin", (req, res) => {
+    res.render("djbeauty/login.ejs")
+})
+app.post("/signin/success", passport.authenticate("local", { failureRedirect: "/signin" }), (req, res) => {
+    console.log("Welcome to D&J Beauty and Thai Spa")
+    res.redirect("/")
+    
+})
+app.get("/signoff", (req, res) => {
+    req.logOut();
+    res.redirect("/")
+})
 app.get("/test", (req, res) => {
     res.render("djbeauty/test.ejs")
 })
-app.get("/", async(req, res) => {
+app.get("/", async (req, res) => {
+    console.log(req.user)
     res.render("djbeauty/home.ejs")
 })
 app.get("/offers", async(req, res) => {
