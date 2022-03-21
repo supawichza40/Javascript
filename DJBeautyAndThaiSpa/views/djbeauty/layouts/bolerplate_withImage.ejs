@@ -14,12 +14,13 @@
     <link rel="stylesheet" href="/CSS/master.css" />
   </head>
 
-  <body class="d-flex flex-column boilerplate_withImage">
+  <body class="boilerplate_withImage">
+
     <%- include("../partials/navbarWithoutWeather.ejs") %>
 
     <div style="font-size: 1vw">
       <div class="row">
-        <div class="col-1 p-0 m-0">
+        <div id="sidebar" class="col-1 p-0 m-0">
           <%- include("../partials/sidebar.ejs") %>
         </div>
         <div class="col-11 p-0 m-0"><%- body %></div>

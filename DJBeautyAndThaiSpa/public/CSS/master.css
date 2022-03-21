@@ -101,19 +101,35 @@ main {
   font-weight: bold;
   
 }
-@media (max-width: 850px){
-  
-  #shop-name{
-    display: none;
-  }
+@media only screen and (max-width: 1178px) {
+    #dj-name {
+        display: none;
+    }
 }
-@media(max-width:850px){
-
-  #shop-logo{
+@media only screen and (max-width:763px) {
+  #override-bootstrap-navbar-djname{
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
   }
-
 }
+@media only screen and (max-width:1000px) {
+  #sidebar{
+    display: none;
+  }
+}
+@media only screen and (max-width:767px) {
+  #navbar-rightside{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+}
+@media only screen and (max-width:767px) {
+  #signin-signout{
+    width: 150px;
+  }
+}
+
