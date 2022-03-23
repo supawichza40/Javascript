@@ -1,0 +1,138 @@
+<% layout("djbeauty/layouts/bolerplate_withImage.ejs") %>
+<style>
+  /* Carousel styling */
+  #introCarousel,
+  .carousel-inner,
+  .carousel-item,
+  .carousel-item.active {
+    height: 100vh;
+  }
+
+  .carousel-item:nth-child(1) {
+    background-image: url("https://florida-academy.edu/wp-content/uploads/2020/05/Head-Massage-FloridaAcademy-1500x1000.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .carousel-item:nth-child(2) {
+    background-image: url("https://cdn.shopify.com/s/files/1/0100/6082/files/glacierbg.jpg?v=1560359164");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .carousel-item:nth-child(3) {
+    background-image: url("https://mdbootstrap.com/img/Photos/Others/images/78.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  /* Height for devices larger than 576px */
+  @media (min-width: 992px) {
+    #introCarousel {
+      margin-top: -58.59px;
+    }
+  }
+</style>
+<body>
+  <div
+    id="carouselExampleInterval"
+    class="carousel slide"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="5000">
+        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)">
+          <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="text-white text-center">
+              <h1 class="mb-3">Welcome to D&J Beauty and Thai Spa</h1>
+              <h5 class="mb-4">Try out our D&J Signature Massage</h5>
+              <a
+                class="btn btn-outline-light btn-lg m-2"
+                href="/treatments/massages"
+                role="button"
+                rel="nofollow"
+                target="_blank"
+                >Explore!</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)">
+          <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="text-white text-center">
+              <h1>
+                Treat yourself to a relaxing, rejuvenating, and calming
+                experience. Because you deserve it!
+              </h1>
+              <br />
+              <br />
+              <p>
+                Here at DJ Beauty and Thai Spa we only offer you professional
+                treatments that leave you feeling like a million, from massages
+                to facials whatever the treatment you will be content with your
+                experience here with us. To learn more about what we provide
+                take a look at our treatments page to find out what treatment
+                will suit you best! Or alternatively, call us on 0203 659 8400
+                to ask us for more information. we wish you the best, from DJ
+                Beauty.
+              </p>
+              <a
+                class="btn btn-outline-light btn-lg m-2"
+                href="/gallery"
+                role="button"
+                rel="nofollow"
+                target="_blank"
+                >View our gallery!</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)">
+          <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="text-white text-center">
+              <h1 class="mb-3">Don't know where to Park?</h1>
+              <p>
+                We know that finding a car park can be a bit of a hassle,
+                therefore we created a page dedicated to finding you all the car
+                park around D&J.
+              </p>
+              <a
+                class="btn btn-outline-light btn-lg m-2"
+                href="/carpark"
+                role="button"
+                rel="nofollow"
+                target="_blank"
+                >Find car park near D&J!</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleInterval"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleInterval"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</body>

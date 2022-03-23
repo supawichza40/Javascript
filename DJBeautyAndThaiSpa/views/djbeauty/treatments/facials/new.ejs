@@ -3,16 +3,16 @@
     <main>
     <h1>New Facial</h1>
     <form action="/treatments/facials" method="post" enctype="multipart/form-data">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name">
-        <label for="image">Image</label>
-        <input type="file" name="image" id="image" multiple>
-        <label for="description">Description</label>
-        <textarea name="description" id="description" cols="30" rows="10"></textarea>
-        <label for="duration">Duration</label>
-        <input type="text" name="duration" id="duration">
-        <label for="price">Price</label>
-        <input type="number" name="price" id="price">
+        <label class="form-label" for="name">Name</label>
+        <input class="form-control" type="text" name="name" id="name">
+        <label class="form-label" for="image">Image</label>
+        <input class="form-control" type="file" name="image" id="image" multiple>
+        <label class="form-label" for="description">Description</label>
+        <textarea class="form-control" name="description" id="description" cols="30" rows="10"></textarea>
+        <label class="form-label" for="duration">Duration</label>
+        <input class="form-control" type="text" name="duration" id="duration">
+        <label class="form-label" for="price">Price</label>
+        <input class="form-control" type="number" name="price" id="price">
         <button type="submit">New Facial</button>
 
     </form>

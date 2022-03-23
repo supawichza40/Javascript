@@ -1,6 +1,6 @@
 if (process.env.NODE_ENV !== "production") {
-    require("dotenv").config({ path: __dirname + "/.env" });
-
+    require("dotenv").config({ "path":"C:\Work\Javascript\DJBeautyAndThaiSpa\.env"});
+    console.log(__dirname,__filename)
 }
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");

@@ -1,0 +1,25 @@
+<% layout("djbeauty/layouts/boilerplate.ejs") %>
+<body >
+    <main class="container">
+        <h1>Gallery</h1>
+<div class="row text-center text-lg-start">
+    <% if(gallery!=null) {%> 
+    <% for(let image of gallery.images){ %> 
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+        <img class="img-fluid img-thumbnail" src="<%= image.url %> " alt="">
+      </a>
+    </div>
+    <% } %> 
+    <% } %> 
+  </div>
+
+    </main>
+    </body>
+
+
+  
+
+    </main>
+
+</body>

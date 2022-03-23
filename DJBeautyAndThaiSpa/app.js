@@ -18,7 +18,7 @@ const session = require("express-session");
 const passport = require("passport")
 const localStrategy = require("passport-local");
 const User = require("./models/user");
-
+const Gallery = require("./models/gallery")
 const sessionConfig = {
     secret: "this should be a secret",
     resave: true,
@@ -32,6 +32,7 @@ const sessionConfig = {
 
     }
 }
+// Allow assets directory listings
 if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
 }
@@ -138,7 +139,7 @@ app.get("/test", (req, res) => {
 })
 app.get("/", async (req, res) => {
     console.log(req.user)
-    res.render("djbeauty/home.ejs")
+    res.render("djbeauty/home2.ejs")
 })
 app.get("/offers", async(req, res) => {
     const foundOffer = await Offer.find({});
@@ -181,8 +182,38 @@ app.delete("/offers/:id", async (req, res) => {
 app.get("/introduction", (req, res) => {
     res.render("djbeauty/introduction.ejs")
 })
-app.get("/gallery", (req, res) => {
-    res.render("djbeauty/gallery.ejs")
+app.get("/gallery", async(req, res) => {
+    const getGallery = await Gallery.find({});
+    console.log(getGallery)
+
+    res.render("djbeauty/gallery/gallerylightbox.ejs",{gallery:getGallery[0]})
+})
+app.get("/gallery/new", (req, res) => {
+    res.render("djbeauty/gallery/new.ejs")
+})
+app.patch("/gallery/success",upload.array("images"), async (req, res) => {
+    console.log("success")
+    const filterImages = req.files.map(file => ({ url: file.path, filename: file.filename }))
+    const result = await mongoose.connection.db.collection("galleries").count()
+
+    if (result == 0) {
+        console.log("gallery is null")
+        const newGallery = new Gallery()
+        newGallery.images.push(...filterImages);
+        console.log(newGallery)
+        await newGallery.save();
+
+    }
+    else {
+        console.log("Gallery not empty")
+        const getCurrentGallery = await Gallery.find({});
+        console.log(getCurrentGallery)
+        await getCurrentGallery[0].images.push(...filterImages);
+        await getCurrentGallery[0].save();
+        
+
+    }
+    res.redirect("/gallery")
 })
 app.get("/treatments", (req, res) => {
     res.render("djbeauty/treatments.ejs")

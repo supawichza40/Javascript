@@ -1,0 +1,11 @@
+<% layout("/djbeauty/layouts/boilerplate.ejs") %>
+
+<form
+  action="/gallery/success?_method=PATCH"
+  method="post"
+  enctype="multipart/form-data"
+>
+  <label for="images">Images</label>
+  <input type="file" name="images" id="images" multiple />
+  <button type="submit">Update</button>
+</form>

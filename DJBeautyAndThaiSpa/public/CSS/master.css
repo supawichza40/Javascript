@@ -9,7 +9,7 @@ main {
   color: goldenrod;
 }
 .sidebarCss li a {
-  color: rgb(173, 105, 16)
+  color: rgb(173, 105, 16);
 }
 .sidebarCss li a:hover {
   color: goldenrod;
@@ -67,69 +67,176 @@ main {
 .card {
   display: inline-block;
 }
-.facial_card{
+.facial_card {
   display: inline-block;
 }
-.waxing-table-header th{
+.waxing-table-header th {
   padding: 10px;
-  margin:10px;
+  margin: 10px;
 }
-.waxing-table td{
+.waxing-table td {
   padding: 10px;
-  margin:10px;
+  margin: 10px;
 }
-#override-bootstrap-navbar-djname{
-  color:goldenrod;
+#override-bootstrap-navbar-djname {
+  color: goldenrod;
   font-size: 2em;
   text-decoration: underline;
-  font-family: 'Roboto', sans-serif;
-  font-family: 'Tangerine', cursive;
+  font-family: "Roboto", sans-serif;
+  font-family: "Tangerine", cursive;
 }
-.treatwell-widget{
-  
+.treatwell-widget {
   background-color: goldenrod;
-  font-family: 'Nanum Myeongjo', serif;
+  font-family: "Nanum Myeongjo", serif;
   font-size: large;
   color: rgb(255, 255, 255);
   border-radius: 8px;
 }
-.treatwell-widget:hover{
+.treatwell-widget:hover {
   background-color: burlywood;
 }
-#overwrite-bootstrap-footer{
+#overwrite-bootstrap-footer {
   background-color: goldenrod;
   font-weight: bold;
-  
 }
 @media only screen and (max-width: 1178px) {
-    #dj-name {
-        display: none;
-    }
-}
-@media only screen and (max-width:763px) {
-  #override-bootstrap-navbar-djname{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-  }
-}
-@media only screen and (max-width:1000px) {
-  #sidebar{
+  #dj-name {
     display: none;
   }
 }
-@media only screen and (max-width:767px) {
-  #navbar-rightside{
+@media only screen and (max-width: 763px) {
+  #override-bootstrap-navbar-djname {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
   }
 }
-@media only screen and (max-width:767px) {
-  #signin-signout{
+@media only screen and (max-width: 1000px) {
+  #sidebar {
+    display: none;
+  }
+}
+@media only screen and (max-width: 767px) {
+  #navbar-rightside {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  #boilerplate-body {
+    width: 100vw;
+    margin: 0;
+  }
+  #wax-main {
+    font-size: 2.5vw;
+  }
+}
+@media only screen and (max-width: 767px) {
+  #signin-signout {
     width: 150px;
   }
 }
+@media only screen and (max-width: 750px) {
+  .home {
+    font-size: 30px;
+  }
+}
+@media only screen and (max-width: 750px) {
+  .home {
+    padding: 0;
+    margin: 0;
+  }
+}
+@media only screen and (max-width: 750px) {
+  .footer-row {
+    font-size: 3vw;
+    display: grid;
+    justify-items: center;
+    text-align: center;
+  }
+  .home-container {
+    text-align: center;
+  }
+  #shop-email {
+    text-align: center;
+    width: 100%;
+  }
 
+  #treatment-quickaccess {
+    display: none;
+  }
+}
+@media only screen and (max-width: 1500px) {
+  .massage-main {
+    font-size: 2.5vw;
+    width: 100vw;
+  }
+  #treatment-quickaccess {
+    display: none;
+  }
+  #facial-quickaccess {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .treatments-div {
+    display: grid;
+    justify-content: center;
+  }
+  p {
+    width: 100%;
+    font: 100px;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    width: 100%;
+    font-size: 5vw;
+  }
+  #carpark-main {
+    font-size: 3.5vw;
+  }
+  #footer-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  #massage-main {
+    font-size: 2.5vw;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  p {
+    width: 100%;
+    font: 100px;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    width: 100%;
+    font-size: 3vw;
+  }
+  h5 {
+    font-size: 2vw;
+  }
+  #carpark-main {
+    font-size: 3.5vw;
+  }
+  #footer-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  #massage-main {
+    font-size: 2.5vw;
+  }
+}

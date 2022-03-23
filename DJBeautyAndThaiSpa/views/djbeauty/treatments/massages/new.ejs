@@ -4,14 +4,14 @@
         <article>
             <h1>New Massage</h1>
             <form action="/treatments/massages" method="post" enctype="multipart/form-data">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name">
-                <label for="image">Images</label>
-                <input type="file" name="image" id="image" multiple>
-                <label for="description">Description</label>
-                <textarea name="description" id="description" cols="30" rows="10"></textarea>
-                <label for="benefit">Benefit</label>
-                <textarea name="benefit" id="benefit" cols="30" rows="10"></textarea>
+                <label class="form-label" for="name">Name</label>
+                <input class="form-control" type="text" name="name" id="name">
+                <label class="form-label" for="image">Images</label>
+                <input class="form-control" type="file" name="image" id="image" multiple>
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" name="description" id="description" cols="30" rows="10"></textarea>
+                <label class="form-label" for="benefit">Benefit</label>
+                <textarea class="form-control" name="benefit" id="benefit" cols="30" rows="10"></textarea>
                 <button type="submit">Create New Massage</button>
             </form>
         </article>

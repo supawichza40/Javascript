@@ -1,11 +1,12 @@
 <% layout("djbeauty/layouts/boilerplate.ejs") %>
 <body>
   <main>
-    <div class="row">
+    <div class="row massage-main">
       <div class="col-2"></div>
       <div class="col-8">
         
         <article>
+          <a href="/treatments/massages/new">New Massage</a>
           <h1 class="">Massages</h1>
           <% massages.forEach((massage,index)=>{%>
           <div class="card" style="width: 30rem;">
@@ -23,7 +24,7 @@
           <% }) %>
         </article>
       </div>
-      <div class="col-2">
+      <div class="col-2" id="treatment-quickaccess">
         <nav class="navbar sticky-top" style="top: 60px">
           <ul>
             <% massages.forEach((massage,index)=>{ %>
