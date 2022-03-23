@@ -9,29 +9,28 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-10">
+                
+                <% facials.forEach((facial,index)=>{%>
+                    
+                        <div class="facial_card" style="width: 35rem;">
+                            <img class="card-img-top" src="<%= facial.images[0].url %>" alt="Card image cap">
+                                <div class="card-body">
+                                    <h2 class="card-title" id="<%= facial.name %>-<%= index  %>">Name:<%= facial.name %></h2>
+                                    <p class="card-text">
+                                        <%= facial.description %>
+                                    </p>
 
-          <% facials.forEach((facial,index)=>{%>
-        <div class="facial_card" style="width: 30rem;">
-            <img class="card-img-top" src="<%= facial.images[0].url %>" alt="Card image cap">
-            <div class="card-body">
-                <h2 class="card-title" id="<%= facial.name %>-<%= index  %>">Name:<%= facial.name %>
-                </h2>
-                <p class="card-text">
-                    <%= facial.description %>
-                </p>
-
-          <p>Duration:<%= facial.duration %> - Price:£<%= facial.price %>
-                </p>
+                                    <p>Duration:<%= facial.duration %> - Price:£<%= facial.price %>
+                                    </p>
 
  
-                <a href="/treatments/facials/<%= facial._id %> " class="btn btn-primary">Detail</a>
-            </div>
-        </div>
-          <% }) %>
-
-                </div>
-                <div class="col-2">
+                                    <a href="/treatments/facials/<%= facial._id %> " class="btn btn-primary">Detail</a>
+                                </div>
+                        </div>
+        
+                    
+                <% }) %>
+                <div class="col-md-2">
                     
                         <nav class="navbar sticky-top" id="facial-quickaccess" style="top: 60px">
                             <ul>
@@ -46,6 +45,7 @@
                         </nav>
                     
                 </div>
+            </div>
         </article>
     </main>
 </body>

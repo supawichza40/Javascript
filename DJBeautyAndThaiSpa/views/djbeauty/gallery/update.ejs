@@ -1,0 +1,14 @@
+<% layout("djbeauty/layouts/boilerplate.ejs") %> 
+
+
+
+<form action="/gallery/update/success" method="post" enctype="multipart/form-data">
+    <input type="file" name="images" id="images" multiple>
+    <% for(let image of gallery.images) {%>
+        <img src="<%= image.url %> " alt="">
+        <input type="checkbox" name="deletedImage" id="deletedImage" value="<%= image.filename %>" >
+        <label for="deletedImage">Delete?</label>
+        <% } %>
+
+    <button type="submit">Update</button>
+</form>

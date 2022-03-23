@@ -1,3 +1,4 @@
-console.log(new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes())
-console.log(new Date(Date.now()).toTimeString())
-console.log(new Date(Date.now()).toDateString())
+const name = {
+    deletedImage: ['DJBeauty/p6z1tpwalhxxxz9fik8k', 'DJBeauty/p4md8sq4wknuzn9lsvxd']
+}
+console.log(typeof(name.deletedImage)=="object")

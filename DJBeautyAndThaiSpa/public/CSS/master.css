@@ -70,6 +70,9 @@ main {
 .facial_card {
   display: inline-block;
 }
+#massage_card{
+  display: inline-block;
+}
 .waxing-table-header th {
   padding: 10px;
   margin: 10px;
@@ -174,6 +177,7 @@ main {
     font-size: 2.5vw;
     width: 100vw;
   }
+
   #treatment-quickaccess {
     display: none;
   }
@@ -189,7 +193,7 @@ main {
   }
   p {
     width: 100%;
-    font: 100px;
+    font: 2vw;
   }
   h1,
   h2,
@@ -197,7 +201,7 @@ main {
   h4,
   h5 {
     width: 100%;
-    font-size: 5vw;
+    font-size: 4vw;
   }
   #carpark-main {
     font-size: 3.5vw;
@@ -222,10 +226,10 @@ main {
   h3,
   h4 {
     width: 100%;
-    font-size: 3vw;
+    font-size: 50px;
   }
   h5 {
-    font-size: 2vw;
+    font-size: 30px;
   }
   #carpark-main {
     font-size: 3.5vw;
@@ -236,7 +240,22 @@ main {
     justify-content: center;
     width: 100%;
   }
+
   #massage-main {
     font-size: 2.5vw;
+
+
+    
   }
+  #address, #contact, #follow, #shop-name{
+    font-size: 30px;
+  }
+ 
 }
+@media only screen and (max-width: 1510px) {
+  #massage-left-col{
+    display: none;
+  }
+
+}
+

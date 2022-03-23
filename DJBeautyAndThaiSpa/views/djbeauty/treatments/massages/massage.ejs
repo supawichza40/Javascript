@@ -9,7 +9,8 @@
           <a href="/treatments/massages/new">New Massage</a>
           <h1 class="">Massages</h1>
           <% massages.forEach((massage,index)=>{%>
-          <div class="card" style="width: 30rem;">
+            
+          <div class="card" id="massage_card" style="width: 35rem;">
             <img class="card-img-top" src="<%= massage.images[0].url %>" alt="Card image cap">
             <div class="card-body">
               <h2 class="card-title" id="<%= massage.name %>-<%= index  %>">Name:<%= massage.name %></h2>

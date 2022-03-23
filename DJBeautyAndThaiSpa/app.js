@@ -51,7 +51,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.engine("ejs", ejsMate);
 app.use(methodOverride("_method"));
 app.use(async(req, res, next) => {
-    res.locals.test = "aloha"
     res.locals.currentuser = req.user;
     // res.locals.djWeatherData = await djbeautyWeatherData()
     next();
@@ -105,6 +104,14 @@ function wrapAsync(fn) {
         fn(req, res, next).catch(e => next(e));
     }
 }
+const isValidUser = function (req, res, next) {
+    if (req.user) {
+        next();
+    }
+    else {
+        next(new AppError(404,"Invalid User, please sign in"))
+    }
+}
 app.get("/error", wrapAsync((req, res) => {
     throw new AppError(404,"This is new error")
 }))
@@ -146,14 +153,14 @@ app.get("/offers", async(req, res) => {
     
     res.render("djbeauty/offers/offers.ejs", { offers: foundOffer })
 })
-app.get("/offers/new", (req, res) => {
+app.get("/offers/new",isValidUser, (req, res) => {
     res.render("djbeauty/offers/new.ejs")
 })
 app.get("/offers/:id", async(req, res) => {
     const foundOfferById = await Offer.findById( req.params.id );
     res.render("djbeauty/offers/details.ejs", { offer: foundOfferById });
 })
-app.post("/offers", async (req, res) => {
+app.post("/offers", isValidUser, async (req, res) => {
     req.body.expiredDate = convertDateToMiliSecond(req.body.expiredDate);
     req.body.createdDate = Date.now();
     console.log(convertSecondIntoDayMonthYear(req.body.expiredDate))
@@ -162,18 +169,18 @@ app.post("/offers", async (req, res) => {
     res.redirect("/offers");
 
 })
-app.get("/offers/:id/update", async(req, res) => {
+app.get("/offers/:id/update", isValidUser, async(req, res) => {
     const getOfferById =await Offer.findById(req.params.id);
     getOfferById.getHTMLDate = convertSecondIntoDayMonthYear;
     res.render("djbeauty/offers/update.ejs",{offer:getOfferById})
     
 })
-app.patch("/offers/:id", async(req, res) => {
+app.patch("/offers/:id", isValidUser, async(req, res) => {
 
     const foundOffer = await Offer.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.redirect(`/offers/${req.params.id}`);
 })
-app.delete("/offers/:id", async (req, res) => {
+app.delete("/offers/:id", isValidUser, async (req, res) => {
     const foundOffer = await Offer.findByIdAndDelete(req.params.id);
     res.redirect("/offers")
 })
@@ -188,10 +195,10 @@ app.get("/gallery", async(req, res) => {
 
     res.render("djbeauty/gallery/gallerylightbox.ejs",{gallery:getGallery[0]})
 })
-app.get("/gallery/new", (req, res) => {
+app.get("/gallery/new", isValidUser, (req, res) => {
     res.render("djbeauty/gallery/new.ejs")
 })
-app.patch("/gallery/success",upload.array("images"), async (req, res) => {
+app.patch("/gallery/success", upload.array("images"), async (req, res) => {
     console.log("success")
     const filterImages = req.files.map(file => ({ url: file.path, filename: file.filename }))
     const result = await mongoose.connection.db.collection("galleries").count()
@@ -215,6 +222,35 @@ app.patch("/gallery/success",upload.array("images"), async (req, res) => {
     }
     res.redirect("/gallery")
 })
+app.get("/gallery/update", isValidUser, async(req, res) => {
+    const gallery = await Gallery.find({});
+
+    res.render("djbeauty/gallery/update.ejs",{gallery:gallery[0]})
+})
+app.post("/gallery/update/success", upload.array("images"), async (req, res) => {
+    const filteredGallery = req.files.map(file => ({ url: file.path, filename: file.filename }));
+    const galleryFound = await Gallery.find({});
+    galleryFound[0].images.push(...filteredGallery);
+    await galleryFound[0].save();
+
+    if(req.body.deletedImage){
+        if (typeof (req.body.deletedImage) == "object") {
+            
+            await galleryFound[0].updateOne({ $pull: { images: { filename: { $in: req.body.deletedImage } } } })
+            await galleryFound[0].save();
+            for (let file of req.body.deletedImage) {
+                await cloudinary.uploader.destroy(file);
+            }
+            
+        }
+        else {
+            await galleryFound[0].updateOne({ $pull: { images: { filename: req.body.deletedImage } } });
+            await galleryFound[0].save()
+            await cloudinary.uploader.destroy(req.body.deletedImage);
+            }
+    }
+    res.redirect("/gallery")
+})
 app.get("/treatments", (req, res) => {
     res.render("djbeauty/treatments.ejs")
 })
@@ -222,7 +258,7 @@ app.get("/treatments/massages", async(req, res) => {
     const getAllMassage = await Massage.find({});
     res.render("djbeauty/treatments/massages/massage.ejs",{massages:getAllMassage})
 })
-app.get("/treatments/massages/new", (req, res) => {
+app.get("/treatments/massages/new", isValidUser, (req, res) => {
     res.render("djbeauty/treatments/massages/new.ejs");
 })
 app.get("/treatments/massages/:id", async (req, res) => {
@@ -240,11 +276,11 @@ app.post("/treatments/massages",upload.array("image"), async(req, res) => {
     res.redirect("/treatments/massages");
     
 })
-app.get("/treatments/massages/:id/update", async(req, res) => {
+app.get("/treatments/massages/:id/update", isValidUser, async(req, res) => {
     const getMassageById = await Massage.findById(req.params.id);
     res.render("djbeauty/treatments/massages/update.ejs", { massage: getMassageById });
 })
-app.patch("/treatments/massages/:id/update/prices", async(req, res) => {
+app.patch("/treatments/massages/:id/update/prices", isValidUser, async(req, res) => {
     
     const findMassageById = await (Massage.findById(req.params.id));
     await findMassageById.updateOne({ $pull: { prices: { _id: { $in: req.body.toDelete } } } })
@@ -282,7 +318,7 @@ app.patch("/treatments/massages/:id", upload.array("image"), async(req, res) => 
 
     res.redirect(`/treatments/massages/${req.params.id}`)
 })
-app.delete("/treatments/massages/:id", async (req, res) => {
+app.delete("/treatments/massages/:id", isValidUser, async (req, res) => {
     await Massage.findByIdAndDelete(req.params.id);
     res.redirect("/treatments/massages")
 })
@@ -291,11 +327,11 @@ app.get("/treatments/waxings", async(req, res) => {
     const foundWaxing = await Waxing.find({});
     res.render("djbeauty/treatments/waxings/waxing.ejs", { waxings: foundWaxing });
 })
-app.get("/treatments/waxings/update", async (req, res) => {
+app.get("/treatments/waxings/update", isValidUser, async (req, res) => {
     const foundAllWaxing = await Waxing.find({});
     res.render("djbeauty/treatments/waxings/update.ejs",{ waxings: foundAllWaxing });
 })
-app.patch("/treatments/waxings", async (req, res) => {
+app.patch("/treatments/waxings", isValidUser, async (req, res) => {
     const deletedWaxing = await Waxing.deleteMany({_id: req.body.deleted})
     if (req.body.name != "" && req.body.duration != "" && req.body.price != "") {
         const newWaxing = new Waxing({ name:req.body.name, duration:req.body.duration, price:req.body.price })
@@ -303,13 +339,14 @@ app.patch("/treatments/waxings", async (req, res) => {
     }
     res.redirect("/treatments/waxings")
 })
-const Facial = require("./models/facial")
+const Facial = require("./models/facial");
+const gallery = require("./models/gallery");
 app.get("/treatments/facials", async(req, res) => {
     const getAllFacial = await Facial.find({});
 
     res.render("djbeauty/treatments/facials/facial.ejs",{facials:getAllFacial})
 })
-app.get("/treatments/facials/new", (req, res) => {
+app.get("/treatments/facials/new", isValidUser, (req, res) => {
     res.render("djbeauty/treatments/facials/new.ejs");
 })
 app.post("/treatments/facials",upload.array("image"), async (req, res) => {
@@ -324,7 +361,7 @@ app.get("/treatments/facials/:id",async (req, res) => {
     const foundFacialById = await (Facial.findById(req.params.id));
     res.render("djbeauty/treatments/facials/details.ejs",{facial:foundFacialById})
 })
-app.get("/treatments/facials/:id/edit",async (req, res) => {
+app.get("/treatments/facials/:id/edit", isValidUser, async (req, res) => {
     const foundFacialById = await (Facial.findById(req.params.id))
     res.render("djbeauty/treatments/facials/edit.ejs", { facial: foundFacialById });
 })
@@ -360,7 +397,7 @@ app.patch("/treatments/facials/:id", upload.array("image"), async (req, res) => 
     res.redirect(`/treatments/facials/${req.params.id}`)
 
 })
-app.delete("/treatments/facials/:id", async (req, res) => {
+app.delete("/treatments/facials/:id", isValidUser, async (req, res) => {
     const foundFacialUsingId = await Facial.findById(req.params.id);
     const getFilenameFromImage = foundFacialUsingId.images.map(image => ( image.filename ))
     console.log(getFilenameFromImage)
