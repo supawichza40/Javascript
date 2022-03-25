@@ -281,3 +281,65 @@ main {
     width: 20rem;
   }
 }
+hr{
+    border: none;
+    border: 0.5px solid goldenrod;
+    color: goldenrod ;
+    font-size: large;
+    font-weight: bold;
+    overflow: visible;
+    text-align: center;
+    
+
+}
+hr::after{
+  background: #fff;
+  font: 20px solid red;
+  color: rgb(112, 62, 21);
+  content: 'D&J';
+  padding: 0 4px;
+  position: relative;
+  top: -14px;
+}
+#sub-header {
+    border: none;
+    border: 1px solid goldenrod;
+    color: goldenrod ;
+    font-size: large;
+    font-weight: bold;
+    overflow: visible;
+    text-align: center;
+    width: 30%;
+    margin: 0 auto;
+    opacity: 1;
+    
+    
+    
+
+}
+#sub-header::after{
+  background: rgba(255, 255, 255, 0.6);
+  font: 30px solid red;
+  color: rgb(112, 62, 21);
+  content: 'Let treat yourself to a relaxing experience!';
+  padding: 0 4px;
+  position: relative;
+  top: -18px;
+  font-family: 'Nanum Myeongjo', serif;
+  font-family: 'Petrona', serif;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Tangerine', cursive;
+}
+#home-header{
+  color: goldenrod;
+  font: 60px solid goldenrod;
+  font-weight: bold;
+  font-family: 'Nanum Myeongjo', serif;
+  font-family: 'Petrona', serif;
+  font-family: 'PT Serif', serif;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Tangerine', cursive;
+  opacity: 1;
+}
+
+
