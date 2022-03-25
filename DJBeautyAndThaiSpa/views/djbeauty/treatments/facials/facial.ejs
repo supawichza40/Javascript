@@ -1,21 +1,26 @@
 <% layout("djbeauty/layouts/boilerplate.ejs") %>
 <body >
-    <main class="container">
-        <article>
+
+
             <div class="row">
                 <div class="col-12">
-                    <h1 style="display: inline-block;">Facials</h1>
+                    <h1>Facials</h1>
                     <a href="/treatments/facials/new"><Button>New Facial</Button></a>
                 </div>
             </div>
-            <div class="row">
-                
+            <div class="row massage-main">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <article>
+                        
+                <div class="row row-cols-1 row-cols-md-3 g-4">
                 <% facials.forEach((facial,index)=>{%>
-                    
-                        <div class="facial_card" style="width: 35rem;">
-                            <img class="card-img-top" src="<%= facial.images[0].url %>" alt="Card image cap">
+                        <div class="col">
+                        <div class="card h-100" id = "massage_card">
+                            
+                            <img class="card-img-top" id="<%= facial.name %>-<%= index  %>" src="<%= facial.images[0].url %>" alt="Card image cap">
                                 <div class="card-body">
-                                    <h2 class="card-title" id="<%= facial.name %>-<%= index  %>">Name:<%= facial.name %></h2>
+                                    <h2 class="card-title" >Name:<%= facial.name %></h2>
                                     <p class="card-text">
                                         <%= facial.description %>
                                     </p>
@@ -27,10 +32,15 @@
                                     <a href="/treatments/facials/<%= facial._id %> " class="btn btn-primary">Detail</a>
                                 </div>
                         </div>
+                        </div>
         
                     
                 <% }) %>
-                <div class="col-md-2">
+                </div>
+
+                </article>
+                </div>
+                <div class="col-2" id="treatment-quickaccess">
                     
                         <nav class="navbar sticky-top" id="facial-quickaccess" style="top: 60px">
                             <ul>
@@ -46,7 +56,7 @@
                     
                 </div>
             </div>
-        </article>
-    </main>
+
+
 </body>
 </html>

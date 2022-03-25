@@ -8,12 +8,13 @@
         <article>
           <a href="/treatments/massages/new">New Massage</a>
           <h1 class="">Massages</h1>
+          
           <% massages.forEach((massage,index)=>{%>
             
-          <div class="card" id="massage_card" style="width: 35rem;">
-            <img class="card-img-top" src="<%= massage.images[0].url %>" alt="Card image cap">
+          <div class="card" id="massage_card">
+            <img class="card-img-top" id="<%= massage.name %>-<%= index  %>" src="<%= massage.images[0].url %>" alt="Card image cap">
             <div class="card-body">
-              <h2 class="card-title" id="<%= massage.name %>-<%= index  %>">Name:<%= massage.name %></h2>
+              <h2 class="card-title">Name:<%= massage.name %></h2>
               <p class="card-text"><%= massage.description %></p>
               <p class="card-text">Benefit: <%= massage.benefit %></p>
               <p class="card-text"><% for(let p of massage.prices ) {%>

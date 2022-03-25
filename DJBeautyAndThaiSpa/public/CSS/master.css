@@ -70,7 +70,7 @@ main {
 .facial_card {
   display: inline-block;
 }
-#massage_card{
+#massage_card {
   display: inline-block;
 }
 .waxing-table-header th {
@@ -243,19 +243,41 @@ main {
 
   #massage-main {
     font-size: 2.5vw;
-
-
-    
   }
-  #address, #contact, #follow, #shop-name{
+  #address,
+  #contact,
+  #follow,
+  #shop-name {
     font-size: 30px;
   }
- 
 }
 @media only screen and (max-width: 1510px) {
-  #massage-left-col{
+  #massage-left-col {
     display: none;
   }
-
 }
-
+@media only screen and (min-width: 1820px) {
+  .card {
+    width: 35rem;
+  }
+}
+@media only screen and (max-width: 1820px) {
+  .card {
+    width: 70rem;
+  }
+}
+@media only screen and (max-width: 1364px) {
+  .card {
+    width: 50rem;
+  }
+}
+@media only screen and (max-width: 942px) {
+  .card {
+    width: 30rem;
+  }
+}
+@media only screen and (max-width: 557px) {
+  .card {
+    width: 20rem;
+  }
+}
