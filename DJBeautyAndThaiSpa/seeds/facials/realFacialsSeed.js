@@ -22,7 +22,12 @@ facialData = [
                 filename:"DJBeauty/What-Makes-Express-Facial-Different-From-Other-Facial-Treatments-scaled_fjmpbn"
             }
         ],
-        price:["30 Minutes £30"]
+        price: [
+            {
+                duration: "30 Minutes",
+                price:30
+            }
+        ]
         
     },
     {
@@ -34,7 +39,12 @@ facialData = [
                 filename:"DJBeauty/images_awfyzb"
             }
         ],
-        price:["55 Minutes £45"]
+        price: [
+            {
+                duration: "55 Minutes",
+                price:45
+            }
+        ]
         
     },
         {
@@ -46,7 +56,10 @@ facialData = [
                 filename:"DJBeauty/RUMA-scaled.jpegw3_c37ce8"
             }
         ],
-        price:["55 Minutes £45"]
+            price: [{
+                duration: "55 Minutes",
+                price: 45
+            }]
         
     },
         {
@@ -62,7 +75,10 @@ facialData = [
                 filename:"DJBeauty/Sonopeel_eynsed"
             }
         ],
-        price:["60 Minutes £45.00"]
+            price: [{
+                duration: "60 Minutes",
+                price: 45
+            }]
         
     },
         {
@@ -78,7 +94,15 @@ facialData = [
                 filename:"DJBeauty/muvfoz30xgqivqqvi4zw"
             }
         ],
-        price:["30 Minutes £30","60 Minutes(+Mask & Facial Massage) £45"]
+            price: [{
+                duration: "30 Minutes",
+                price: 30
+            },
+                {
+                    duration: "60 Minutes(Mask & Facial Massage included)",
+                    price: 45
+                }
+                ]
         
     }
         

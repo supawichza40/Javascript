@@ -191,18 +191,7 @@ main {
     display: grid;
     justify-content: center;
   }
-  p {
-    width: 100%;
-    font: 2vw;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    width: 100%;
-    font-size: 4vw;
-  }
+  
   #carpark-main {
     font-size: 3.5vw;
   }
@@ -241,9 +230,7 @@ main {
     width: 100%;
   }
 
-  #massage-main {
-    font-size: 2.5vw;
-  }
+
   #address,
   #contact,
   #follow,
@@ -329,7 +316,6 @@ hr::after {
 .massage-main {
   margin-top: 20px;
   margin-bottom: 20px;
-  box-shadow: 0 0 0 5px goldenrod;
 }
 .waxing-main {
   margin-top: 20px;
@@ -341,7 +327,6 @@ hr::after {
   margin-top: 20px;
   margin-bottom: 20px;
 
-  box-shadow: 0 0 0 5px goldenrod;
 }
 
 #massage-image:hover {
@@ -354,8 +339,7 @@ hr::after {
   border: 5px solid goldenrod;
 }
 .main-massage-text,
-#waxing-text,
-#facial-text {
+#waxing-text, #facial-text {
   color: goldenrod;
   font-family: "Nanum Myeongjo", serif;
   font-family: "Petrona", serif;
@@ -363,4 +347,31 @@ hr::after {
   font-family: "Roboto", sans-serif;
   font-family: "Tangerine", cursive;
   text-align: center;
+}
+#massage-card-main{
+  font-size: 0.8vw;
+}
+#massage-card-main:hover{
+  transition: all 1s;
+  height: 100% !important;
+  background-color: white !important;
+  font-size: large;
+}
+@media only screen and (max-width: 1663px) {
+#massage-card-main{
+  font-size: 10px;
+}
+}
+
+@media only screen and (max-width:1571px){
+  .main-description{
+    display: none;
+  }
+}
+@media only screen and (max-width: 763px){
+  
+}
+
+.style-header-detail{
+  text-decoration: underline;
 }

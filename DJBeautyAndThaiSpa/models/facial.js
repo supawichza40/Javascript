@@ -19,8 +19,12 @@ const facialSchema = new mongoose.Schema({
         }  
     }],
     price: [{
-        type: String,
-        required:true
+        duration: {
+            type:String
+        },
+        price: {
+            type:Number
+        }
     }]
 })
 module.exports = new mongoose.model("Facial", facialSchema);

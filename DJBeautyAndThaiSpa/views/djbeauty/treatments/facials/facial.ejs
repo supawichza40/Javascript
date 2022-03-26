@@ -2,15 +2,14 @@
 <body >
 
 
-            <div class="row">
-                <div class="col-12">
-                    <h1>Facials</h1>
-                    <a href="/treatments/facials/new"><Button>New Facial</Button></a>
-                </div>
-            </div>
+            
             <div class="row massage-main">
                 <div class="col-2"></div>
                 <div class="col-8">
+                    <h1>Facials</h1>
+                    <% if(currentuser) {%> 
+                    <a href="/treatments/facials/new"><Button>New Facial</Button></a>
+                    <% } %> 
                     <article>
                         
                 <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -24,9 +23,10 @@
                                     <p class="card-text">
                                         <%= facial.description %>
                                     </p>
-
-                                    <p>Duration:<%= facial.duration %> - Price:£<%= facial.price %>
-                                    </p>
+                                    <% for(let facial_price of facial.price) {%> 
+                                        <%= facial_price.duration %> £<%= facial_price.price %>  
+                                        <br>
+                                    <% } %> 
 
  
                                     <a href="/treatments/facials/<%= facial._id %> " class="btn btn-primary">Detail</a>

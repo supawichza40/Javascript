@@ -190,7 +190,7 @@
     <h5 id="sub-header">Let treat yourself to a relaxing experience!</h5>
     <div class="row">
       <div class="col-md-4">
-        <a href="">
+        
           <img
             id="massage-image"
             class="massage-main img-thumbnail rounded-circle"
@@ -199,7 +199,7 @@
             onmouseout="unhoverMassage(this);"
             alt="..."
           />
-        </a>
+        
         <h1 id="massage-text" class="main-massage-text">Massage</h1>
       </div>
       <div class="col-md-4">
@@ -226,7 +226,69 @@
       </div>
     </div>
   </article>
+  <article>
+    <h1 class="main-massage-text">Our Recommendation!</h1>
+    <div class="row ">
+      <div class="col-md-4 d-flex flex-row justify-content-center">
+        <div class="card bg-white ">
+          <img src="https://sunshrine.com/wp-content/uploads/2017/09/Facial.jpg" class="card-img"
+            alt="...">
+          <div class="card-img-overlay bg-white opacity-50 text-black h-50" id="massage-card-main">
+            <h5 class="card-title">Crystal Clear Microdermabrasion</h5>
+            <p class="card-text main-description">From a simple beauty flash that instantly rejuvenates and lifts tired skin, to more in-depth treatments for lines,
+            wrinkles, acne scarring, stretch marks and pigmentation problems – it does it all.</p>
+            <p class="card-text">60 mins £55(facial massage + collagen included)</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 d-flex flex-row justify-content-center">
+        <div class="card bg-white ">
+          <img src="https://www.westerlynews.ca/wp-content/uploads/2019/10/18957318_web1_massage-1024x683.jpg" class="card-img"
+            alt="...">
+          <div class="card-img-overlay bg-white opacity-50 text-black h-50" id="massage-card-main">
+            <h5 class="card-title" id="dj-signature-title">D&J Signature Massage</h5>
+            <p class="card-text main-description" id="dj-signature-description">A combination of Deep tissue and Thai Hot Oil Massage with an added feeling of Hot Stone, that will make the best relaxing feeling you never felt before.</p>
+            <p class="card-text">60 mins £49 / 90 mins £69 / 120 mins £90</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 d-flex flex-row justify-content-center">
+        <div class="card bg-white">
+          <img src="https://media1.popsugar-assets.com/files/thumbor/SWgScy6wzvxJ2lxJNyWrsvSRBn0/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2020/01/31/824/n/1922729/tmp_vlybQ7_c23af6b1bf0f1cdd_GettyImages-517796688.jpg" class="card-img"
+            alt="...">
+          <div class="card-img-overlay bg-white opacity-50 text-black h-50" id="massage-card-main">
+            <h5 class="card-title">Couple Massage</h5>
+            <p class="card-text main-description">The best way to spend a time with that important person. We have a couple room to suit that special moment.</p>
+            <p class="card-text">60 mins £49/person</p>
+          </div>
+        </div>
+      </div>
+        
+    </div>
+  </article>
+  <hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <script>
+    function hoverMassageCard(element){
+      document.getElementById("massage-card-main").style.setProperty("height","100%","important")
+    }
+    function unhoverMassageCard(element){
+      element.style.setProperty("height","50%","important")
+    }
     function hoverMassage(element) {
       document.getElementById("massage-text").style.display = "none";
       element.style.transition = "all 1s";

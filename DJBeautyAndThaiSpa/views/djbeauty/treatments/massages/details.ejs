@@ -1,21 +1,56 @@
 <% layout("djbeauty/layouts/boilerplate.ejs") %>
 <body>
     <main class="container" id="massage-main">
-        <article><h1>Massage Detail</h1></article>
-        <h2>Name:<%= massage.name %> </h2>
-        <p>Description:<%= massage.description %> </p>
-        <p>Benefit:<%= massage.benefit %> </p>
-        <% for(let p of massage.prices){ %> 
-            <p>Duration: <%= p.duration %> Price: <%= p.amount %>  </p>
-            <% } %> 
-        
+        <h1  class="style-header-detail"><%= massage.name %> </h1>
+        <h3 class="style-header-detail">Description</h3>
+        <p><%= massage.description %> </p>
+        <h3 class="style-header-detail">Benefit</h3>
+        <p><%= massage.benefit %> </p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Duration</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <% for(let p of massage.prices){ %>
+                    <tr>
+
+                        <td><%= p.duration %> </td>
+                        <td>£<%= p.amount %> </td>
+                    </tr>
+                        <% } %>
+
+                </tbody>
+            </table>
+        <% if(currentuser) {%> 
         <a href="/treatments/massages/<%= massage._id %>/update"><button>Update</button></a>
-        <% for(let image of massage.images){ %> 
-            <img src="<%= image.url %> " alt="">
-            <% } %> 
         <form action="/treatments/massages/<%= massage._id %>?_method=DELETE" method="post">
             <button type="submit">Delete</button>
         </form>
+            <% } %> 
+
+            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <% massage.images.forEach((image,index)=>{ %>
+                    
+                    <div class="carousel-item <%= index==0?"active":"" %> " data-bs-interval="3000">
+                        <img src="<%= image.url %> " class="d-block w-100" alt="...">
+                    </div>
+
+                    <% }) %>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        
     </main>
 </body>
 </html>

@@ -1,6 +1,8 @@
 <% layout("djbeauty/layouts/boilerplate.ejs") %>
 <body>
     <main class="container" id="wax-main">
+    
+
         <article class="text-center" >
             <h1>Waxing Treatments Available</h1>    
             <p>Waxing is a form of semi-permanent hair removal which removes the hair from the root. New hair will not grow back in the
@@ -27,6 +29,10 @@
                     </tr>
                     <% } %> 
             </table>
+            <div id="myGrid" class="ag-theme-alpine" style="height: 600px; width:100%;"></div>
+            <script type="module"src="/javascript/main.js"></script>
+            
+
             <div style="display: flex; flex-direction: row; align-content: center; justify-content: center;">
                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="height: 700px;width: 1000px;">
                     <div class="carousel-inner">

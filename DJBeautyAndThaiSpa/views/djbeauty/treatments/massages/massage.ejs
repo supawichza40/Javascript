@@ -6,7 +6,9 @@
       <div class="col-8">
         
         <article>
+          <% if(currentuser) {%> 
           <a href="/treatments/massages/new">New Massage</a>
+            <% } %> 
           <h1 class="">Massages</h1>
           
           <% massages.forEach((massage,index)=>{%>
