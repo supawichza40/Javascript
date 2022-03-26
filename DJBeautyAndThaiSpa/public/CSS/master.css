@@ -292,6 +292,8 @@ hr {
 }
 hr::after {
   background: #fff;
+  border-radius: 50%;
+
   font: 20px solid red;
   color: rgb(112, 62, 21);
   content: "D&J";
@@ -331,27 +333,34 @@ hr::after {
 }
 .waxing-main {
   margin-top: 20px;
+  margin-bottom: 20px;
 
   box-shadow: 0 0 0 5px goldenrod;
 }
 .facial-main {
   margin-top: 20px;
+  margin-bottom: 20px;
 
   box-shadow: 0 0 0 5px goldenrod;
 }
 
 #massage-image:hover {
-  border: 10px solid goldenrod;
+  border: 5px solid goldenrod;
 }
-.main-massage-text {
+#waxing-image:hover {
+  border: 5px solid goldenrod;
+}
+#facial-image:hover {
+  border: 5px solid goldenrod;
+}
+.main-massage-text,
+#waxing-text,
+#facial-text {
   color: goldenrod;
   font-family: "Nanum Myeongjo", serif;
   font-family: "Petrona", serif;
   font-family: "PT Serif", serif;
   font-family: "Roboto", sans-serif;
   font-family: "Tangerine", cursive;
-  text-align: center;
-}
-#massage-text {
   text-align: center;
 }
