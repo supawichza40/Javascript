@@ -375,3 +375,16 @@ hr::after {
 .style-header-detail{
   text-decoration: underline;
 }
+.img-review{
+  border: 5px solid goldenrod!important;
+}
+#review-sub-title{
+  color: goldenrod;
+  font-family: "Nanum Myeongjo", serif;
+  font-family: "Petrona", serif;
+  font-family: "PT Serif", serif;
+  font-family: "Roboto", sans-serif;
+  font-family: "Tangerine", cursive;
+  text-align: center;
+  text-decoration: underline;
+}

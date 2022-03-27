@@ -3,13 +3,19 @@
     <main class="container">
         <article>
             <h1>This Month Special Offer</h1>
-            <% for(let offer of offers){ %> 
+
+            <% for(var i = offers.length -1 ;i>=0;i--){ %> 
                 <section>
-                   <h1>Name: <%= offer.name %> </h1> 
-                   <h2>Price: £ <%= offer.price  %> </h2>
-                   <img src="<%= offer.image %> " alt="Image not found!">
-                   <h4>Expired On: <%= new Date(offer.expiredDate).toDateString() %> </h4>
-                   <a href="/offers/<%= offer._id %> "><button>Detail</button></a>
+                    <div class="card w-100 m-4 border border-dark border-5">
+                        <div class="card-body">
+                            <h1 class="card-title">Name: <%= offers[i].name %></h5>
+                            <h3 class="card-subtitle">Price: £ <%= offers[i].price %> %></h5>
+                            <p class="card-text"><small class="text-muted">Expired On: <%= new Date(offers[i].expiredDate).toDateString() %></small></p>
+                            <a href="/offers/<%= offers[i]._id %> "><button>Detail</button></a>
+                        </div>
+                        <img src="<%= offers[i].images.url %> " class="card-img-bottom" alt="...">
+                    </div>
+                    
                 </section>
                 <% } %> 
         </article>

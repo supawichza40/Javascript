@@ -1,10 +1,15 @@
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config({ "path": "c:\\Work\\DevUploadToGithub\\Javascript\\DJBeautyAndThaiSpa\\.env" });
+}
 const {name,duration,price}= require("./facialData")
 const mongoose = require("mongoose")
 const Facial = require("../../models/facial")
 main().catch(err => console.log(err));
-
 async function main() {
-        await mongoose.connect('mongodb://127.0.0.1:27017/DJBeauty'); //Does work 
+    const dbUrl = process.env.DB_URL
+    console.log(dbUrl)
+    // await mongoose.connect('mongodb://127.0.0.1:27017/DJBeauty'); //Does work 
+    await mongoose.connect(dbUrl)
 
 }
 

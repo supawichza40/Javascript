@@ -14,8 +14,13 @@ const offerSchema = new mongoose.Schema({
     description: {
         type: String
     },
-    image: {
-        type:String
+    images: {
+        url: {
+            type:String
+        },
+        filename: {
+            type:String
+        }
     },
     createdDate: {
         type: Date,

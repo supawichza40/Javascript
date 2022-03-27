@@ -58,7 +58,9 @@ app.use(async(req, res, next) => {
 main().catch(err => console.log(err));
 
 async function main() {
-        await mongoose.connect('mongodb://127.0.0.1:27017/DJBeauty'); //Does work 
+    const dbUrl = process.env.DB_URL
+    // await mongoose.connect('mongodb://127.0.0.1:27017/DJBeauty'); //Does work 
+    await mongoose.connect(dbUrl)
 
 }
 const convertDateToMiliSecond = function (dateString) {
@@ -115,7 +117,7 @@ const isValidUser = function (req, res, next) {
 app.get("/error", wrapAsync((req, res) => {
     throw new AppError(404,"This is new error")
 }))
-app.get("/register", (req, res) => {
+app.get("/register",isValidUser, (req, res) => {
     res.render("djbeauty/register.ejs")
 })
 app.post("/register/success", async(req, res) => {
@@ -160,11 +162,16 @@ app.get("/offers/:id", async(req, res) => {
     const foundOfferById = await Offer.findById( req.params.id );
     res.render("djbeauty/offers/details.ejs", { offer: foundOfferById });
 })
-app.post("/offers", isValidUser, async (req, res) => {
+app.post("/offers", upload.array("image"), async (req, res) => {
+    console.log(req.body)
+    console.log(req.files)
+    const pictureData = req.files.map(file=>({url:file.path,filename:file.filename}))
     req.body.expiredDate = convertDateToMiliSecond(req.body.expiredDate);
     req.body.createdDate = Date.now();
     console.log(convertSecondIntoDayMonthYear(req.body.expiredDate))
     const newOffer = new Offer(req.body);
+    console.log(pictureData)
+    newOffer.images = pictureData[0];
     await newOffer.save();
     res.redirect("/offers");
 
@@ -182,6 +189,7 @@ app.patch("/offers/:id", isValidUser, async(req, res) => {
 })
 app.delete("/offers/:id", isValidUser, async (req, res) => {
     const foundOffer = await Offer.findByIdAndDelete(req.params.id);
+    await cloudinary.uploader.destroy(foundOffer.images.filename)
     res.redirect("/offers")
 })
 
