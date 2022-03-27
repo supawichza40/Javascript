@@ -3,14 +3,16 @@
     <main class="container">
         <article>
             <h1>Name:<%= offer.name %> </h1>
-            <img src="<%= offer.image %> " alt="Image not found!">
+            <img src="<%= offer.images.url %> " class="img-fluid" alt="Image not found!">
             <h2>Price: <%= offer.price %> </h2>
             <p>Description: <%= offer.description %> </p>
             <p>Created On:<%= new Date(offer.createdDate).toDateString() %></p>
             <p>Expired On: <%= new Date(offer.expiredDate).toDateString() %> </p>
+            <% if(currentuser){ %> 
             <form action="/offers/<%= offer._id %>?_method=DELETE" method="post">
                 <button type="submit">Delete</button>
             </form>
+            <% } %> 
         </article>
     </main>
 </body>

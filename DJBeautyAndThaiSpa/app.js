@@ -19,8 +19,10 @@ const passport = require("passport")
 const localStrategy = require("passport-local");
 const User = require("./models/user");
 const Gallery = require("./models/gallery")
+const MongoStore = require("connect-mongo");
+const dbUrl = process.env.DB_URL||'mongodb://127.0.0.1:27017/DJBeauty'
 const sessionConfig = {
-    secret: "this should be a secret",
+    secret: process.env.SECRET,
     resave: true,
     saveUninitialized: true,
     // cookie: { secure: true }
@@ -30,7 +32,12 @@ const sessionConfig = {
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,//Expire a week from now.
         maxAge: 1000 * 60 * 60 * 24 * 7
 
-    }
+    },
+    store: MongoStore.create({
+        
+        mongoUrl: dbUrl,
+        touchAfter: 24 * 60 *60
+    })
 }
 // Allow assets directory listings
 if (process.env.NODE_ENV !== "production") {
@@ -58,7 +65,7 @@ app.use(async(req, res, next) => {
 main().catch(err => console.log(err));
 
 async function main() {
-    const dbUrl = process.env.DB_URL
+    
     // await mongoose.connect('mongodb://127.0.0.1:27017/DJBeauty'); //Does work 
     await mongoose.connect(dbUrl)
 
