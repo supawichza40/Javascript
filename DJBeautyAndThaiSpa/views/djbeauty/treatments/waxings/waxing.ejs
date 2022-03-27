@@ -13,9 +13,13 @@
             <a href="https://en.wikipedia.org/wiki/Waxing">Ref: Wiki-Waxing </a>
         </article>
         <article>
+            <% if(currentuser) {%> 
             <a href="/treatments/waxings/update"><button>Update Waxing</button></a>
+            <% } %> 
             <h1 >Waxing Prices</h1>
-            <table class="center table table-light table-hover table-sm table-striped text-center">
+            <button onclick="staticWaxing(this);" class="btn btn-primary m-2">Static Price</button>
+            <button onclick="dynamicWaxing(this);" class="btn btn-success m-2">Dynamic Price</button>
+            <table id="static-wax" class="center table table-light table-hover table-sm table-striped text-center" style="display: none;">
                 <tr class="waxing-table-header">
                     <th>Name</th>
                     <th>Duration</th>
@@ -73,5 +77,17 @@
             </div>
         </article>
     </main>
+    <script>
+        function staticWaxing(element){
+            
+            document.getElementById("static-wax").style.setProperty("display","table","important")
+            document.getElementById("static-wax").style.setProperty("width","100%","important")
+            document.getElementById("myGrid").style.setProperty("display","none","important")
+    }
+        function dynamicWaxing(element){
+            document.getElementById("static-wax").style.setProperty("display","none","important")
+            document.getElementById("myGrid").style.setProperty("display","block","important")
+        }
+    </script>
 </body>
 </html>
