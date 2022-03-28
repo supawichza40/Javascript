@@ -6,7 +6,7 @@
         <%= new Date(Date.now()).toDateString() %>
       </h6>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-3">
       <div class="row">
         <div class="col-12">
           <a
@@ -93,6 +93,69 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="col-md-6" >
+      <div class="mx-3 px-3" id="weather-nav">
+        <!-- horizontal weather table -->
+        <table style="width: 5%; font-size: 12px; text-align: center" class="text-dark">
+          <tr>
+            <th>Time:</th>
+            <% djWeatherData.hourly.some((object,index)=>{ %>
+              <!-- new Date(offer.expiredDate).toDateString() -->
+              <!-- object.dt -->
+              <!-- openweathermap is in second not milisecond. -->
+              <td>
+                <%= `${new Date(object.dt*1000).getHours()}:00` %>
+              </td>
+              <% return index==10 %>
+                <!-- <td><%= new Date(object.dt*1000).toTimeString() %> </td> -->
+                <% }) %>
+          </tr>
+          <tr>
+            <th>Temperature:</th>
+            <% djWeatherData.hourly.some((object,index)=>{ %>
+              <td>
+                <%= Math.floor(object.temp) %>&#8451;
+              </td>
+              <% return index==10 %>
+                <% }) %>
+          </tr>
+          <tr>
+            <th>Description:</th>
+            <% djWeatherData.hourly.some((object,index)=>{ %>
+              <td>
+                <%= object.weather[0].main %>
+              </td>
+              <% return index==10 %>
+                <% }) %>
+          </tr>
+          <tr>
+            <th>Icon</th>
+            <% djWeatherData.hourly.some((object,index)=>{ %>
+              <td style="width: 10px; height: 10px">
+                <% if(object.weather[0].main.toLowerCase()=="rain" ){ %>
+                  <img src="/weather_icon/animated/rainy-1.svg" alt="" />
+                  <% } else if(object.weather[0].main.toLowerCase()=="clouds" ) { %>
+                    <img src="/weather_icon/animated/cloudy.svg" alt="" />
+                    <% } else if(object.weather[0].main.toLowerCase()=="sunny" ) { %>
+                      <img src="/weather_icon/animated/day.svg" alt="" />
+                      <% } else if(object.weather[0].main.toLowerCase()=="clear" ) { %>
+                        <img src="/weather_icon/animated/day.svg" alt="" />
+                        <% } %>
+                          <!-- <div id="icon">
+                  <img
+                    id="wicon"
+                    src="http://openweathermap.org/img/wn/<%= object.weather[0].icon  %>.png"
+                    alt="Weather icon"
+                  />
+                </div> -->
+              </td>
+              <% return index==10 %>
+                <% }) %>
+          </tr>
+        </table>
+      </div>
+      
     </div>
     <div class="col-md-2">
       <div class="row" id="navbar-rightside">

@@ -2,14 +2,16 @@
 <body>
   <main class="container">
     <h1>Gallery</h1>
+    <% if(currentuser) {%> 
     <a href="/gallery/new">New Gallery</a>
     <a href="/gallery/update">Update Gallery</a>
+    <% } %> 
     <div class="photo-gallery">
       <div class="row photos">
         <% for(let image of gallery.images){ %>
-        <div class="col-sm-6 col-md-4 col-lg-3 item">
+        <div class="col-sm-6 col-md-4 col-lg-3">
           <a href="<%= image.url %> " data-lightbox="photos"
-            ><img class="img-fluid" src="<%= image.url %>"
+            ><img style="width:600px; height:300px; object-fit: cover;" class="img-fluid" src="<%= image.url %>"
           /></a>
         </div>
         <% } %>

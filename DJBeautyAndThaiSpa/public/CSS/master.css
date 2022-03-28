@@ -388,3 +388,10 @@ hr::after {
   text-align: center;
   text-decoration: underline;
 }
+
+
+@media only screen and (max-width: 1860px){
+  #weather-nav{
+    display: none;
+  }
+}

@@ -59,7 +59,7 @@ app.engine("ejs", ejsMate);
 app.use(methodOverride("_method"));
 app.use(async(req, res, next) => {
     res.locals.currentuser = req.user;
-    // res.locals.djWeatherData = await djbeautyWeatherData()
+    res.locals.djWeatherData = await djbeautyWeatherData()
     next();
 })
 main().catch(err => console.log(err));
@@ -128,7 +128,6 @@ app.get("/register",isValidUser, (req, res) => {
     res.render("djbeauty/register.ejs")
 })
 app.post("/register/success", async(req, res) => {
-    console.log(req.body)
     const { username, password, email } = req.body;
     const user = new User({ username: username, email: email })
     const newRegisterUser = await (User.register(user, password));
@@ -154,7 +153,6 @@ app.get("/test", (req, res) => {
     res.render("djbeauty/test.ejs")
 })
 app.get("/", async (req, res) => {
-    console.log(req.user)
     res.render("djbeauty/home2.ejs")
 })
 app.get("/offers", async(req, res) => {
@@ -170,14 +168,10 @@ app.get("/offers/:id", async(req, res) => {
     res.render("djbeauty/offers/details.ejs", { offer: foundOfferById });
 })
 app.post("/offers", upload.array("image"), async (req, res) => {
-    console.log(req.body)
-    console.log(req.files)
     const pictureData = req.files.map(file=>({url:file.path,filename:file.filename}))
     req.body.expiredDate = convertDateToMiliSecond(req.body.expiredDate);
     req.body.createdDate = Date.now();
-    console.log(convertSecondIntoDayMonthYear(req.body.expiredDate))
     const newOffer = new Offer(req.body);
-    console.log(pictureData)
     newOffer.images = pictureData[0];
     await newOffer.save();
     res.redirect("/offers");
@@ -206,7 +200,6 @@ app.get("/introduction", (req, res) => {
 })
 app.get("/gallery", async(req, res) => {
     const getGallery = await Gallery.find({});
-    console.log(getGallery)
 
     res.render("djbeauty/gallery/gallerylightbox.ejs",{gallery:getGallery[0]})
 })
@@ -214,7 +207,6 @@ app.get("/gallery/new", isValidUser, (req, res) => {
     res.render("djbeauty/gallery/new.ejs")
 })
 app.patch("/gallery/success", upload.array("images"), async (req, res) => {
-    console.log("success")
     const filterImages = req.files.map(file => ({ url: file.path, filename: file.filename }))
     const result = await mongoose.connection.db.collection("galleries").count()
 
@@ -222,14 +214,12 @@ app.patch("/gallery/success", upload.array("images"), async (req, res) => {
         console.log("gallery is null")
         const newGallery = new Gallery()
         newGallery.images.push(...filterImages);
-        console.log(newGallery)
         await newGallery.save();
 
     }
     else {
         console.log("Gallery not empty")
         const getCurrentGallery = await Gallery.find({});
-        console.log(getCurrentGallery)
         await getCurrentGallery[0].images.push(...filterImages);
         await getCurrentGallery[0].save();
         
@@ -281,9 +271,7 @@ app.get("/treatments/massages/:id", async (req, res) => {
     res.render("djbeauty/treatments/massages/details.ejs",{massage:getMassageById})
 })
 app.post("/treatments/massages",upload.array("image"), async(req, res) => {
-    console.log(req.body);
     req.body.prices = [];
-    console.log(req.body)
     const newMassage = new Massage(req.body);
     const filterFiles = req.files.map(file => ({ url: file.path, filename: file.filename }));
     newMassage.images.push(...filterFiles);
@@ -300,14 +288,12 @@ app.patch("/treatments/massages/:id/update/prices", isValidUser, async(req, res)
     const findMassageById = await (Massage.findById(req.params.id));
     await findMassageById.updateOne({ $pull: { prices: { _id: { $in: req.body.toDelete } } } })
     if ( req.body.duration != "" && req.body.amount != "") {
-        console.log("I am inside")
         findMassageById.prices.push(req.body);
         await findMassageById.save();
     }
     res.redirect(`/treatments/massages/${req.params.id}/update`);
 })
 app.patch("/treatments/massages/:id", upload.array("image"), async(req, res) => {
-    console.log(req.body, req.files)
     //update req.body 
     await Massage.findByIdAndUpdate(req.params.id, req.body);
     //update file to database
@@ -319,7 +305,6 @@ app.patch("/treatments/massages/:id", upload.array("image"), async(req, res) => 
     if (req.body.deletedImage) {
         if (req.body.deletedImage.constructor === Array) {
             for (let filename of req.body.deletedImage) {
-                console.log("I am inside")
                await cloudinary.uploader.destroy(filename)
             }
         }
@@ -365,7 +350,6 @@ app.get("/treatments/facials/new", isValidUser, (req, res) => {
     res.render("djbeauty/treatments/facials/new.ejs");
 })
 app.post("/treatments/facials",upload.array("image"), async (req, res) => {
-    console.log(req.files,req.body)
     const newFacial = new Facial(req.body);
     const mappedImageInfo = req.files.map((file) => ({ url: file.path, filename: file.filename }));
     newFacial.images.push(...mappedImageInfo);
@@ -381,7 +365,6 @@ app.get("/treatments/facials/:id/edit", isValidUser, async (req, res) => {
     res.render("djbeauty/treatments/facials/edit.ejs", { facial: foundFacialById });
 })
 app.patch("/treatments/facials/:id", upload.array("image"), async (req, res) => {
-    console.log(req.files, req.body)
     //update normal field
     await Facial.findByIdAndUpdate(req.params.id, req.body)
     //update new file that uploaded
@@ -390,10 +373,8 @@ app.patch("/treatments/facials/:id", upload.array("image"), async (req, res) => 
     foundFacial.images.push(...getFileInfo);
     await foundFacial.save();
     //delete image that is in checkbox.
-    console.log(req.body.deletedImage)
     if(req.body.deletedImage){
         if (req.body.deletedImage.constructor === Array) {
-            console.log("This is array")
             console.log(req.body.deletedImage)
             for (let deleteImage of req.body.deletedImage) {
                 
@@ -415,7 +396,6 @@ app.patch("/treatments/facials/:id", upload.array("image"), async (req, res) => 
 app.delete("/treatments/facials/:id", isValidUser, async (req, res) => {
     const foundFacialUsingId = await Facial.findById(req.params.id);
     const getFilenameFromImage = foundFacialUsingId.images.map(image => ( image.filename ))
-    console.log(getFilenameFromImage)
     await cloudinary.uploader.destroy(...getFilenameFromImage);
     const foundFacial = await Facial.findByIdAndDelete(req.params.id);
     res.redirect(`/treatments/facials`)
@@ -429,8 +409,7 @@ app.get("/thankyou", (req, res) => {
     res.render("djbeauty/thankyou.ejs")
 })
 app.post("/contacts/success", (req, res) => {
-    console.log(req.body)
-    sendMessageToCustomer(req.body.email,"Thank you for sending your enquiry to D&J Beauty and Thai Spa.","We have received your enquiry, and will get in touch as soon as we can, but for quicker response please call us on 02036598400.")
+    sendMessageToCustomer(req.body,req.body.email)
     res.redirect("/thankyou")
 })
 app.get("/comments-and-reviews", (req, res) => {
